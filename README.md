@@ -34,4 +34,25 @@ A suíte de testes será executada a partir da raiz com:
 uv run pytest
 ```
 
-O ambiente `uv` e os comandos de qualidade serão configurados no card MPJ-50.
+## Desenvolvimento local
+
+Crie o ambiente reproduzível e instale as dependências de desenvolvimento com:
+
+```bash
+uv sync --dev
+```
+
+Inicie a aplicação apenas no computador local com:
+
+```bash
+uv run streamlit run src/dmp/ui/app.py --server.address localhost
+```
+
+Execute a quality gate a partir da raiz do repositório:
+
+```bash
+uv run ruff format --check .
+uv run ruff check .
+uv run mypy .
+uv run pytest
+```

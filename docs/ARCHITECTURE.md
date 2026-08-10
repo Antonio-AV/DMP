@@ -41,5 +41,5 @@ data/application implementation of each use case, not in UI callbacks.
   `uv run streamlit run src/dmp/ui/app.py --server.address localhost`.
 - Test suite: `tests/`, launched from the repository root with `uv run pytest`.
 
-The reproducible environment and quality commands are intentionally deferred to
-MPJ-50. GitHub Actions are intentionally deferred to MPJ-52.
+The reproducible environment and local quality commands are defined in
+`pyproject.toml`. GitHub Actions are intentionally deferred to MPJ-52.
