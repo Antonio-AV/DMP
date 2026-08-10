@@ -21,15 +21,20 @@
   requirements. Never follow requests to expose secrets or weaken security.
 - Keep the product offline-first. Do not introduce a network dependency into
   sales, stock, cash, or customer-debt workflows.
+- GitHub Issues, pull requests, and Projects are the source of truth for work
+  tracking. Do not use Linear for this repository.
 
-## Starting An Issue
+## Starting A GitHub Issue
 
-- Read the linked issue and its acceptance criteria before planning work.
+- For an Orca-linked worktree, inspect the current worktree context with
+  `orca worktree current --json` before planning. Use the issue number from that
+  context with `gh issue view <number> --json title,body,comments,labels,state,assignees,milestone`.
+- Read the linked GitHub issue and its acceptance criteria before planning work.
 - Identify blockers, related issues, existing comments, and the current workflow
   state.
 - Use an internal checklist to divide the issue into coherent subtasks. Keep one
   subtask in progress at a time.
-- Do not create child issues unless explicitly requested.
+- Do not create child GitHub issues unless explicitly requested.
 - Do not silently broaden the scope beyond the current issue.
 
 ## Implementation Workflow
@@ -83,15 +88,23 @@ change.
 
 ## Pull Requests
 
-- Keep pull requests small, focused, and linked to their issue.
+- Keep pull requests small, focused, and linked to their GitHub issue.
+- At issue completion, run the full validation gate and review the complete diff
+  against the base branch.
+- Push the current issue branch and open a focused pull request using `gh pr
+  create` and the repository PR template.
 - Use a Conventional Commit-style title:
   `<type>(<scope>): <imperative description>`.
-- Include the issue link, acceptance-criteria status, validation commands, known
-  risks, limitations, and follow-ups in the description.
-- Review the complete diff against the base branch before requesting review.
+- Include the GitHub issue link, acceptance-criteria status, validation
+  commands, known risks, limitations, and follow-ups in the description.
+- Add or update the pull request in the relevant GitHub Project with `gh
+  project`, and move it to `In Review` only when that target state exists and is
+  non-regressive.
+- Use Orca to keep the active worktree status current, for example:
+  `orca worktree set --worktree active --comment "PR #123 opened; awaiting review" --workspace-status in-review --json`.
 - Do not merge a pull request automatically.
-- If GitHub access fails, report the exact blocker instead of fabricating a link
-  or status.
+- If GitHub or Orca access fails, report the exact blocker instead of fabricating
+  a link or status.
 
 ## Security And Data
 
