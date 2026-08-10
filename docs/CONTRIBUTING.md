@@ -11,13 +11,14 @@ Use one branch per issue. When creating a branch manually, use:
 Examples:
 
 ```text
-feat/DMP-123-sales-flow
-fix/DMP-124-stock-boundary
-docs/DMP-125-domain-rules
+feat/MPJ-123-sales-flow
+fix/MPJ-124-stock-boundary
+docs/MPJ-125-domain-rules
 ```
 
 Keep an existing issue branch name when the development environment provides
-one.
+one. Linear is the source of issue identifiers. Agent pull requests must target
+`develop`; keep `main` for releases and explicitly authorized hotfixes.
 
 ## Commits
 
@@ -36,8 +37,14 @@ secrets, generated files, local databases, installers, or failing work.
 
 ## Pull Requests
 
-Pull requests should be small, focused, and linked to their issue. Use a
-Conventional Commit-style title:
+Pull requests should be small, focused, and linked to their Linear issue. Agent
+pull requests must target `develop`:
+
+```bash
+gh pr create --base develop
+```
+
+Use a Conventional Commit-style title:
 
 ```text
 <type>(<scope>): <imperative description>
@@ -46,13 +53,15 @@ Conventional Commit-style title:
 Include:
 
 - A concise summary and motivation.
+- The Linear issue link and Project context.
 - The acceptance criteria and their status.
 - Commands used for validation.
 - Known risks, limitations, and follow-up work.
 
 Run the complete validation gate before pushing. Review the complete diff
-yourself before requesting review. Do not merge a pull request while required
-checks are failing.
+against `develop` before requesting review. Use Orca Linear to attach the PR,
+post one completion comment, and move the issue to `In Review` when valid. Do
+not merge a pull request while required checks are failing.
 
 ## Local Development
 
