@@ -12,4 +12,5 @@ def test_streamlit_entrypoint_initializes() -> None:
 
     app = AppTest.from_file(str(ENTRYPOINT)).run()
 
+    assert not app.exception
     assert app.title[0].value == "DMP"
