@@ -22,11 +22,7 @@ não podem importar componentes Streamlit.
 
 ## Entrypoints
 
-O entrypoint local será executado com:
-
-```bash
-uv run streamlit run src/dmp/ui/app.py --server.address localhost
-```
+O entrypoint local é `src/dmp/ui/app.py`.
 
 A suíte de testes será executada a partir da raiz com:
 
@@ -39,7 +35,7 @@ uv run pytest
 Crie o ambiente reproduzível e instale as dependências de desenvolvimento com:
 
 ```bash
-uv sync --dev
+uv sync --locked --dev
 ```
 
 Inicie a aplicação apenas no computador local com:

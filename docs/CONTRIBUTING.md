@@ -33,7 +33,8 @@ Keep the subject under 72 characters. Add a body for non-trivial changes and
 explain why the change is needed rather than restating the diff.
 
 Create commits at coherent milestones, not for every small edit. Never commit
-secrets, generated files, local databases, installers, or failing work.
+secrets, generated build artifacts, local databases, installers, or failing
+work. Dependency lockfiles are committed for reproducible environments.
 
 ## Pull Requests
 
@@ -69,7 +70,7 @@ Use `uv` to create a reproducible Python environment once the project metadata
 is available:
 
 ```bash
-uv sync --dev
+uv sync --locked --dev
 ```
 
 Run the application locally with:
