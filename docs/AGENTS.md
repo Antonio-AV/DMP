@@ -55,7 +55,7 @@
 Run from the repository root after the Python project configuration exists:
 
 ```bash
-uv sync --dev
+uv sync --locked --dev
 uv run ruff format --check .
 uv run ruff check .
 uv run mypy .
@@ -81,7 +81,9 @@ change.
   `data`, `packaging`, or `docs`.
 - Keep commit subjects under 72 characters and explain why in the body when the
   change is non-trivial.
-- Do not commit failing, unfinished, generated, or unrelated changes.
+- Do not commit failing, unfinished, generated build artifacts, or unrelated
+  changes. Commit dependency lockfiles when they are part of reproducible
+  environment metadata.
 - Never amend commits unless explicitly requested.
 - Before committing, inspect `git status`, `git diff`, `git diff --check`, and
   the staged file list. Stage only files belonging to the current issue.
