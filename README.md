@@ -14,11 +14,15 @@ src/dmp/
   ui/           Entrypoint e componentes de apresentação Streamlit
 docs/
   ARCHITECTURE.md  Limites, dependências e entradas do projeto
+  UX.md             Navegação e jornadas principais do MVP
 ```
 
 Os limites entre os módulos estão descritos em
 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Regras de domínio e casos de uso
 não podem importar componentes Streamlit.
+
+A navegação, as jornadas principais e os estados da interface estão descritos
+em [`docs/UX.md`](docs/UX.md).
 
 ## Entrypoints
 
