@@ -33,93 +33,95 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 ## Histórias de Usuário
 
-1. Como funcionário, quero acessar o sistema com uma senha geral, para que apenas pessoas autorizadas usem a aplicação.
+1. Como funcionário, quero cadastrar um produto com código, descrição e preço, para que ele possa ser vendido e controlado no estoque.
 
-2. Como funcionário, quero localizar produtos pelo código, para que consiga adicioná-los rapidamente à venda.
+2. Como funcionário, quero acessar o sistema com uma senha geral, para que apenas pessoas autorizadas usem a aplicação.
 
-3. Como funcionário, quero localizar produtos pela descrição, para que consiga encontrar itens sem lembrar seus códigos.
+3. Como funcionário, quero localizar produtos pelo código, para que consiga adicioná-los rapidamente à venda.
 
-4. Como funcionário, quero informar a quantidade de um produto, para que registre múltiplas unidades corretamente.
+4. Como funcionário, quero localizar produtos pela descrição, para que consiga encontrar itens sem lembrar seus códigos.
 
-5. Como funcionário, quero que produtos repetidos sejam agrupados, para que o carrinho permaneça organizado.
+5. Como funcionário, quero informar a quantidade de um produto, para que registre múltiplas unidades corretamente.
 
-6. Como funcionário, quero visualizar o preço cadastrado do produto, para que possa conferi-lo antes de finalizar.
+6. Como funcionário, quero que produtos repetidos sejam agrupados, para que o carrinho permaneça organizado.
 
-7. Como funcionário, quero alterar o preço de um item durante a venda, para que possa aplicar negociações específicas.
+7. Como funcionário, quero visualizar o preço cadastrado do produto, para que possa conferi-lo antes de finalizar.
 
-8. Como funcionário, quero que o preço praticado seja preservado na venda, para que alterações futuras não modifiquem o histórico.
+8. Como funcionário, quero alterar o preço de um item durante a venda, para que possa aplicar negociações específicas.
 
-9. Como funcionário, quero visualizar todos os itens e o total da venda, para que possa corrigir erros antes da confirmação.
+9. Como funcionário, quero que o preço praticado seja preservado na venda, para que alterações futuras não modifiquem o histórico.
 
-10. Como funcionário, quero finalizar uma venda à vista, para que o estoque e o caixa sejam atualizados.
+10. Como funcionário, quero visualizar todos os itens e o total da venda, para que possa corrigir erros antes da confirmação.
 
-11. Como funcionário, quero registrar dinheiro, Pix, débito ou crédito, para que o recebimento seja classificado.
+11. Como funcionário, quero finalizar uma venda à vista, para que o estoque e o caixa sejam atualizados.
 
-12. Como funcionário, quero que uma venda use uma única forma de pagamento no MVP, para que o fluxo inicial permaneça simples.
+12. Como funcionário, quero registrar dinheiro, Pix, débito ou crédito, para que o recebimento seja classificado.
 
-13. Como funcionário, quero finalizar uma venda a prazo, para que o valor seja associado ao débito de um cliente.
+13. Como funcionário, quero que uma venda use uma única forma de pagamento no MVP, para que o fluxo inicial permaneça simples.
 
-14. Como funcionário, quero cadastrar um cliente a qualquer momento, inclusive antes de uma venda a prazo, para que possa manter o cadastro de clientes atualizado.
+14. Como funcionário, quero finalizar uma venda a prazo, para que o valor seja associado ao débito de um cliente.
 
-15. Como funcionário, quero visualizar cada compra a prazo separadamente, para que saiba a origem de cada débito.
+15. Como funcionário, quero cadastrar um cliente a qualquer momento, inclusive antes de uma venda a prazo, para que possa manter o cadastro de clientes atualizado.
 
-16. Como funcionário, quero registrar uma compra a prazo sem parcelas, para que ela tenha apenas um vencimento.
+16. Como funcionário, quero visualizar cada compra a prazo separadamente, para que saiba a origem de cada débito.
 
-17. Como funcionário, quero dividir uma compra a prazo em parcelas, para que possa representar acordos parcelados.
+17. Como funcionário, quero registrar uma compra a prazo sem parcelas, para que ela tenha apenas um vencimento.
 
-18. Como funcionário, quero definir vencimentos para a dívida ou para as parcelas, para que possa acompanhar quando os valores devem ser pagos.
+18. Como funcionário, quero dividir uma compra a prazo em parcelas, para que possa representar acordos parcelados.
 
-19. Como funcionário, quero calcular parcelas automaticamente, para que o preenchimento seja rápido.
+19. Como funcionário, quero definir vencimentos para a dívida ou para as parcelas, para que possa acompanhar quando os valores devem ser pagos.
 
-20. Como funcionário, quero editar os valores das parcelas, para que possa representar acordos personalizados.
+20. Como funcionário, quero calcular parcelas automaticamente, para que o preenchimento seja rápido.
 
-21. Como funcionário, quero registrar pagamentos parciais, para que o saldo restante seja atualizado.
+21. Como funcionário, quero editar os valores das parcelas, para que possa representar acordos personalizados.
 
-22. Como funcionário, quero selecionar a compra que está sendo paga, para que o recebimento seja associado ao débito correto.
+22. Como funcionário, quero registrar pagamentos parciais, para que o saldo restante seja atualizado.
 
-23. Como funcionário, quero visualizar o total devido por cliente, para que saiba quanto ainda está em aberto.
+23. Como funcionário, quero selecionar a compra que está sendo paga, para que o recebimento seja associado ao débito correto.
 
-24. Como funcionário, quero visualizar os recebimentos de clientes, para que possa conferir os valores recebidos no dia.
+24. Como funcionário, quero visualizar o total devido por cliente, para que saiba quanto ainda está em aberto.
 
-25. Como funcionário, quero que o estoque seja reduzido ao finalizar uma venda, para que o saldo represente a quantidade disponível.
+25. Como funcionário, quero visualizar os recebimentos de clientes, para que possa conferir os valores recebidos no dia.
 
-26. Como funcionário, quero que o sistema bloqueie vendas acima do estoque, para que não sejam criados saldos negativos.
+26. Como funcionário, quero que o estoque seja reduzido ao finalizar uma venda, para que o saldo represente a quantidade disponível.
 
-27. Como funcionário, quero registrar entradas manuais de estoque, para que possa adicionar produtos recebidos.
+27. Como funcionário, quero que o sistema bloqueie vendas acima do estoque, para que não sejam criados saldos negativos.
 
-28. Como funcionário, quero registrar ajustes de inventário, para que possa corrigir divergências.
+28. Como funcionário, quero registrar entradas manuais de estoque, para que possa adicionar produtos recebidos.
 
-29. Como funcionário, quero visualizar o histórico de movimentações, para que as alterações no estoque sejam explicáveis.
+29. Como funcionário, quero registrar ajustes de inventário, para que possa corrigir divergências.
 
-30. Como funcionário, quero cancelar uma venda não paga, para que erros possam ser corrigidos.
+30. Como funcionário, quero visualizar o histórico de movimentações, para que as alterações no estoque sejam explicáveis.
 
-31. Como funcionário, quero que o cancelamento restaure o estoque, para que o saldo permaneça correto.
+31. Como funcionário, quero cancelar uma venda não paga, para que erros possam ser corrigidos.
 
-32. Como funcionário, quero que vendas canceladas permaneçam no histórico, para que operações não sejam apagadas.
+32. Como funcionário, quero que o cancelamento restaure o estoque, para que o saldo permaneça correto.
 
-33. Como funcionário, quero que vendas canceladas não entrem nos totais líquidos, para que os valores sejam confiáveis.
+33. Como funcionário, quero que vendas canceladas permaneçam no histórico, para que operações não sejam apagadas.
 
-34. Como funcionário, quero cadastrar um fornecedor, para que seus produtos possam ser relacionados a ele.
+34. Como funcionário, quero que vendas canceladas não entrem nos totais líquidos, para que os valores sejam confiáveis.
 
-35. Como funcionário, quero definir o fornecedor principal de um produto, para que saiba de quem normalmente compro o item.
+35. Como funcionário, quero cadastrar um fornecedor, para que seus produtos possam ser relacionados a ele.
 
-36. Como funcionário, quero adicionar fornecedores alternativos, para que possa consultar outras opções de compra.
+36. Como funcionário, quero definir o fornecedor principal de um produto, para que saiba de quem normalmente compro o item.
 
-37. Como funcionário, quero consultar os produtos de um fornecedor, para que possa planejar reposições.
+37. Como funcionário, quero adicionar fornecedores alternativos, para que possa consultar outras opções de compra.
 
-38. Como funcionário, quero associar uma entrada de estoque a um fornecedor, para que o histórico de reposição seja rastreável.
+38. Como funcionário, quero consultar os produtos de um fornecedor, para que possa planejar reposições.
 
-39. Como funcionário, quero abrir o caixa diário, para que as operações do dia sejam agrupadas.
+39. Como funcionário, quero associar uma entrada de estoque a um fornecedor, para que o histórico de reposição seja rastreável.
 
-40. Como funcionário, quero visualizar vendas à vista, vendas a prazo e recebimentos separadamente, para que entenda o movimento do dia.
+40. Como funcionário, quero abrir o caixa diário, para que as operações do dia sejam agrupadas.
 
-41. Como funcionário, quero visualizar o total por forma de pagamento, para que possa conferir dinheiro, Pix e cartões.
+41. Como funcionário, quero visualizar vendas à vista, vendas a prazo e recebimentos separadamente, para que entenda o movimento do dia.
 
-42. Como funcionário, quero informar os valores físicos contados no fechamento, para que possa comparar o esperado com o recebido.
+42. Como funcionário, quero visualizar o total por forma de pagamento, para que possa conferir dinheiro, Pix e cartões.
 
-43. Como funcionário, quero fechar o caixa com uma senha específica, para que o fechamento não aconteça acidentalmente.
+43. Como funcionário, quero informar os valores físicos contados no fechamento, para que possa comparar o esperado com o recebido.
 
-44. Como funcionário, quero que todos os funcionários tenham acesso às mesmas operações, para que o MVP não dependa de gerenciamento individual de usuários.
+44. Como funcionário, quero fechar o caixa com uma senha específica, para que o fechamento não aconteça acidentalmente.
+
+45. Como funcionário, quero que todos os funcionários tenham acesso às mesmas operações, para que o MVP não dependa de gerenciamento individual de usuários.
 
 ## Decisões de Implementação
 

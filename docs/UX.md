@@ -41,6 +41,42 @@ perder dados persistidos ou o carrinho ativo.
 - Todas as telas devem usar textos em português e valores monetários no formato
   de reais, por exemplo `R$ 12,50`.
 
+## Jornada 1: Cadastrar Produto
+
+### Objetivo
+
+Cadastrar um produto no catálogo para que ele possa ser consultado, vendido e
+relacionado aos fornecedores. Um produto novo começa com estoque zero; as
+unidades recebidas são registradas pela jornada de **Entrada de estoque**.
+
+### Fluxo principal
+
+1. O funcionário acessa **Produtos** e seleciona **Cadastrar produto**.
+2. Informa o **Código**, a **Descrição** e o **Preço de venda**.
+3. Opcionalmente seleciona um **Fornecedor principal** e um ou mais
+   **Fornecedores alternativos** já cadastrados.
+4. O sistema mostra um resumo com código, descrição, preço, fornecedores e
+   **Estoque inicial: 0 unidade**.
+5. O funcionário seleciona **Confirmar cadastro**.
+6. O sistema cria o produto com estoque zero e salva as relações com os
+   fornecedores selecionados.
+7. A tela de sucesso mostra **Produto cadastrado** e oferece as ações
+   **Cadastrar outro produto**, **Registrar entrada** e **Ver produto**.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Catálogo sem produtos | Vazio | **Nenhum produto cadastrado. Cadastre o primeiro produto para começar.** |
+| Código ausente | Validação | **Informe o código do produto.** |
+| Código já cadastrado | Validação | **Já existe um produto com este código. Informe outro código.** |
+| Descrição ausente | Validação | **Informe a descrição do produto.** |
+| Preço ausente ou inválido | Validação | **Informe um preço de venda maior ou igual a zero.** |
+| Fornecedor não encontrado | Validação | **Selecione um fornecedor cadastrado ou cadastre um novo fornecedor.** |
+| Resumo do cadastro | Confirmação | **Confirme o cadastro do produto [descrição] com preço de [valor].** |
+| Falha no registro | Erro | **Não foi possível cadastrar o produto. Tente novamente.** Os dados preenchidos são preservados. |
+| Registro concluído | Sucesso | **Produto cadastrado com sucesso. Estoque inicial: 0 unidade.** |
+
 ## Convenções De Interface
 
 ### Ações
@@ -80,7 +116,7 @@ As telas críticas usam os seguintes estados visíveis:
 | Confirmação | Resume o impacto da ação e oferece **Confirmar** e **Voltar e editar**. |
 | Sucesso | Confirma o registro e oferece a próxima ação relevante. |
 
-## Jornada 1: Venda À Vista
+## Jornada 2: Venda À Vista
 
 ### Objetivo
 
@@ -126,7 +162,7 @@ registrando um recebimento no caixa diário.
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
 | Registro concluído | Sucesso | **Venda concluída. Estoque e caixa foram atualizados.** |
 
-## Jornada 2: Venda A Prazo
+## Jornada 3: Venda A Prazo
 
 ### Objetivo
 
@@ -174,7 +210,7 @@ criando uma dívida com uma ou mais parcelas.
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Venda a prazo concluída. Dívida criada para [cliente].** |
 
-## Jornada 3: Consultar Dívida E Registrar Pagamento
+## Jornada 4: Consultar Dívida E Registrar Pagamento
 
 ### Objetivo
 
@@ -210,7 +246,7 @@ registrar um pagamento total ou parcial.
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
-## Jornada 4: Entrada De Estoque
+## Jornada 5: Entrada De Estoque
 
 ### Objetivo
 
@@ -240,7 +276,7 @@ fornecedor opcional.
 | Falha no registro | Erro | **Não foi possível registrar a entrada. Tente novamente.** |
 | Registro concluído | Sucesso | **Entrada registrada. Novo estoque: [quantidade].** |
 
-## Jornada 5: Ajuste De Inventário
+## Jornada 6: Ajuste De Inventário
 
 ### Objetivo
 
@@ -270,7 +306,7 @@ mantendo o histórico da alteração.
 | Falha no registro | Erro | **Não foi possível registrar o ajuste. Tente novamente.** |
 | Registro concluído | Sucesso | **Ajuste registrado. Novo estoque: [quantidade].** |
 
-## Jornada 6: Cancelar Venda Não Paga
+## Jornada 7: Cancelar Venda Não Paga
 
 ### Objetivo
 
@@ -304,7 +340,7 @@ ao estoque e retirando a venda dos totais líquidos.
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
 | Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
 
-## Jornada 7: Fechar Caixa Diário
+## Jornada 8: Fechar Caixa Diário
 
 ### Objetivo
 
