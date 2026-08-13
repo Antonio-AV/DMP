@@ -149,8 +149,11 @@ registrando um recebimento no caixa diário.
 10. Após a confirmação, o sistema registra a venda, reduz o estoque, cria o
     recebimento imediato e inclui o valor no caixa do dia dentro da mesma
     operação.
-11. A tela de sucesso mostra **Venda concluída** e o identificador da venda,
-    com as ações **Nova venda** e **Ir para o caixa diário**.
+11. No momento da confirmação, o sistema registra a **Data e hora de
+    finalização** da venda.
+12. A tela de sucesso mostra **Venda concluída**, o identificador da venda e a
+    data e hora de finalização, com as ações **Nova venda** e **Ir para o caixa
+    diário**.
 
 ### Estados específicos
 
@@ -165,7 +168,7 @@ registrando um recebimento no caixa diário.
 | Forma não escolhida | Validação | **Escolha uma forma de pagamento.** |
 | Resumo antes do registro | Confirmação | **Confirme a venda de [total] em [forma de pagamento].** |
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
-| Registro concluído | Sucesso | **Venda concluída. Estoque e caixa foram atualizados.** |
+| Registro concluído | Sucesso | **Venda concluída em [data e hora]. Estoque e caixa foram atualizados.** |
 
 ## Jornada 3: Venda A Prazo
 
@@ -196,8 +199,10 @@ criando uma dívida com uma ou mais parcelas.
 9. O funcionário seleciona **Confirmar venda a prazo**.
 10. Após a confirmação, o sistema registra a venda, reduz o estoque e cria a
     dívida e suas parcelas. Não é criado recebimento imediato.
-11. A tela de sucesso mostra **Venda a prazo concluída**, o cliente, o total
-    em aberto e a ação **Ver dívida do cliente**.
+11. No momento da confirmação, o sistema registra a **Data e hora de
+    finalização** da venda.
+12. A tela de sucesso mostra **Venda a prazo concluída**, o cliente, o total em
+    aberto e a data e hora de finalização, com a ação **Ver dívida do cliente**.
 
 ### Estados específicos
 
@@ -213,9 +218,40 @@ criando uma dívida com uma ou mais parcelas.
 | Venda sem estoque suficiente | Validação | Usa a mesma mensagem de estoque da venda à vista e não conclui a operação. |
 | Resumo de cliente e condições | Confirmação | **Confirme a venda a prazo de [total] para [cliente].** |
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
-| Registro concluído | Sucesso | **Venda a prazo concluída. Dívida criada para [cliente].** |
+| Registro concluído | Sucesso | **Venda a prazo concluída em [data e hora]. Dívida criada para [cliente].** |
 
-## Jornada 4: Consultar Dívida E Registrar Pagamento
+## Jornada 4: Consultar Vendas
+
+### Objetivo
+
+Localizar vendas já finalizadas ou canceladas pelo número da venda ou pelo
+período em que foram finalizadas.
+
+### Fluxo principal
+
+1. O funcionário acessa **Vendas** e seleciona **Consultar vendas**.
+2. Informa o **Número da venda**, a **Data inicial** e a **Data final**. A hora
+   inicial e a hora final são opcionais e refinam o período da busca.
+3. Seleciona **Pesquisar**.
+4. O sistema lista as vendas encontradas com **Número**, **Data e hora de
+   finalização**, **Tipo**, **Total**, **Cliente** quando houver e **Status**.
+5. O funcionário seleciona uma venda para visualizar seus itens, pagamento ou
+   dívida e os detalhes do histórico.
+6. A busca pode ser refeita alterando os filtros ou selecionando **Limpar
+   filtros**.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Sem filtros | Vazio | **Informe o número da venda ou um período para pesquisar.** |
+| Período inválido | Validação | **A data inicial não pode ser posterior à data final.** |
+| Hora fora do período | Validação | **A hora inicial deve ser anterior à hora final.** |
+| Nenhuma venda encontrada | Vazio | **Nenhuma venda encontrada para os filtros informados.** |
+| Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
+| Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
+
+## Jornada 5: Consultar Dívida E Registrar Pagamento
 
 ### Objetivo
 
@@ -251,7 +287,7 @@ registrar um pagamento total ou parcial.
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
-## Jornada 5: Entrada De Estoque
+## Jornada 6: Entrada De Estoque
 
 ### Objetivo
 
@@ -281,7 +317,7 @@ fornecedor opcional.
 | Falha no registro | Erro | **Não foi possível registrar a entrada. Tente novamente.** |
 | Registro concluído | Sucesso | **Entrada registrada. Novo estoque: [quantidade].** |
 
-## Jornada 6: Ajuste De Inventário
+## Jornada 7: Ajuste De Inventário
 
 ### Objetivo
 
@@ -311,7 +347,7 @@ mantendo o histórico da alteração.
 | Falha no registro | Erro | **Não foi possível registrar o ajuste. Tente novamente.** |
 | Registro concluído | Sucesso | **Ajuste registrado. Novo estoque: [quantidade].** |
 
-## Jornada 7: Cancelar Venda Não Paga
+## Jornada 8: Cancelar Venda Não Paga
 
 ### Objetivo
 
@@ -320,8 +356,8 @@ ao estoque e retirando a venda dos totais líquidos.
 
 ### Fluxo principal
 
-1. O funcionário acessa **Vendas** e pesquisa pelo **Número da venda** ou
-   período.
+1. O funcionário acessa **Vendas** e pesquisa pelo **Número da venda** ou pelos
+   filtros de data e hora de finalização.
 2. Seleciona uma venda com status **Concluída** e sem recebimento associado.
 3. Confere os itens, o total e o impacto: **O estoque será restaurado e a
    venda não entrará nos totais líquidos.**
@@ -345,7 +381,7 @@ ao estoque e retirando a venda dos totais líquidos.
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
 | Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
 
-## Jornada 8: Fechar Caixa Diário
+## Jornada 9: Fechar Caixa Diário
 
 ### Objetivo
 

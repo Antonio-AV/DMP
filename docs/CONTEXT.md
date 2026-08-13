@@ -27,7 +27,8 @@ feedback before any production migration.
 - `Supplier`: a company that supplies products to the store.
 - `ProductSupplier`: the relationship between a product and a supplier. A
   product has one primary supplier and may have alternative suppliers.
-- `Sale`: a sale with items, a total, a type, and a lifecycle status.
+- `Sale`: a sale with items, a total, a type, a lifecycle status, and the local
+  date and time when it was completed.
 - `SaleItem`: a product, quantity, and the price practiced when the sale was
   made.
 - `Customer`: a customer registered for purchases made on credit.
@@ -40,6 +41,8 @@ feedback before any production migration.
 ## Sale Rules
 
 - A sale starts as `open`, becomes `completed`, or becomes `cancelled`.
+- A completed sale stores the local date and time when confirmation finished.
+- The completion timestamp remains part of the sale history after cancellation.
 - Products can be found by code or description.
 - Adding the same product more than once sums its quantity.
 - The current product price is copied to the sale item when added.
