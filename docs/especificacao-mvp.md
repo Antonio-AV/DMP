@@ -33,7 +33,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 ## Histórias de Usuário
 
-1. Como funcionário, quero cadastrar um produto com código, descrição e preço, para que ele possa ser vendido e controlado no estoque.
+1. Como funcionário, quero cadastrar um produto com código, descrição, preço e estoque inicial, para que ele possa ser vendido e controlado no estoque desde o cadastro.
 
 2. Como funcionário, quero acessar o sistema com uma senha geral, para que apenas pessoas autorizadas usem a aplicação.
 
@@ -147,6 +147,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Produtos repetidos serão agrupados pela soma da quantidade.
 - Uma venda finalizada reduzirá o estoque dentro da mesma transação.
 - O sistema bloqueará vendas que resultem em estoque negativo.
+- O cadastro de produto permitirá informar um estoque inicial inteiro maior ou igual a zero.
+- O estoque inicial será registrado como uma entrada no histórico de movimentações.
 - Cada venda à vista criará um recebimento imediato.
 - Cada venda a prazo criará uma dívida associada a um cliente.
 - Uma venda a prazo poderá ter uma dívida única ou várias parcelas.

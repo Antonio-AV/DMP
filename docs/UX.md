@@ -46,22 +46,26 @@ perder dados persistidos ou o carrinho ativo.
 ### Objetivo
 
 Cadastrar um produto no catálogo para que ele possa ser consultado, vendido e
-relacionado aos fornecedores. Um produto novo começa com estoque zero; as
-unidades recebidas são registradas pela jornada de **Entrada de estoque**.
+relacionado aos fornecedores. O funcionário pode informar o estoque inicial do
+produto; novas unidades recebidas depois do cadastro são registradas pela
+jornada de **Entrada de estoque**.
 
 ### Fluxo principal
 
 1. O funcionário acessa **Produtos** e seleciona **Cadastrar produto**.
-2. Informa o **Código**, a **Descrição** e o **Preço de venda**.
+2. Informa o **Código**, a **Descrição**, o **Preço de venda** e o **Estoque
+   inicial**.
 3. Opcionalmente seleciona um **Fornecedor principal** e um ou mais
    **Fornecedores alternativos** já cadastrados.
 4. O sistema mostra um resumo com código, descrição, preço, fornecedores e
-   **Estoque inicial: 0 unidade**.
+   **Estoque inicial: [quantidade] unidade(s)**.
 5. O funcionário seleciona **Confirmar cadastro**.
-6. O sistema cria o produto com estoque zero e salva as relações com os
-   fornecedores selecionados.
+6. O sistema cria o produto com o estoque inicial informado, salva as relações
+   com os fornecedores selecionados e registra a entrada inicial no histórico
+   de estoque.
 7. A tela de sucesso mostra **Produto cadastrado** e oferece as ações
-   **Cadastrar outro produto**, **Registrar entrada** e **Ver produto**.
+   **Cadastrar outro produto** e **Ver produto**. A ação **Registrar entrada**
+   fica disponível para adicionar unidades depois do cadastro.
 
 ### Estados específicos
 
@@ -72,10 +76,11 @@ unidades recebidas são registradas pela jornada de **Entrada de estoque**.
 | Código já cadastrado | Validação | **Já existe um produto com este código. Informe outro código.** |
 | Descrição ausente | Validação | **Informe a descrição do produto.** |
 | Preço ausente ou inválido | Validação | **Informe um preço de venda maior ou igual a zero.** |
+| Estoque inicial ausente ou inválido | Validação | **Informe uma quantidade inteira de estoque maior ou igual a zero.** |
 | Fornecedor não encontrado | Validação | **Selecione um fornecedor cadastrado ou cadastre um novo fornecedor.** |
-| Resumo do cadastro | Confirmação | **Confirme o cadastro do produto [descrição] com preço de [valor].** |
+| Resumo do cadastro | Confirmação | **Confirme o cadastro do produto [descrição] com preço de [valor] e estoque inicial de [quantidade] unidade(s).** |
 | Falha no registro | Erro | **Não foi possível cadastrar o produto. Tente novamente.** Os dados preenchidos são preservados. |
-| Registro concluído | Sucesso | **Produto cadastrado com sucesso. Estoque inicial: 0 unidade.** |
+| Registro concluído | Sucesso | **Produto cadastrado com sucesso. Estoque inicial: [quantidade] unidade(s).** |
 
 ## Convenções De Interface
 
