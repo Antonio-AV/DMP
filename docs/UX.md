@@ -30,8 +30,10 @@ perder dados persistidos ou o carrinho ativo.
 - **Vendas** é a entrada para escolher **Venda à vista** ou **Venda a prazo**.
 - A busca de produtos aceita **Código ou descrição** e deve aparecer no fluxo
   de qualquer nova venda.
-- A área **Clientes** só exige cadastro quando uma venda a prazo ou um
-  recebimento precisar ser associado a uma pessoa.
+- A área **Clientes** permite cadastrar clientes a qualquer momento, mesmo sem
+  uma venda a prazo em execução.
+- Ao escolher **Venda a prazo**, o funcionário deve selecionar **Cliente
+  cadastrado** ou **Criar cliente** antes de continuar.
 - A área **Caixa diário** mostra um único caixa por dia; abertura, sangria,
   suprimento e despesas não fazem parte do MVP.
 - A navegação não deve ocultar validações ou confirmações pendentes de uma
@@ -136,10 +138,12 @@ criando uma dívida com uma ou mais parcelas.
 1. O funcionário acessa **Vendas** e seleciona **Nova venda** > **Venda a
    prazo**.
 2. O funcionário monta o carrinho usando a mesma busca da venda à vista.
-3. Na etapa **Cliente**, o funcionário pesquisa por **Nome ou telefone**.
-4. O funcionário seleciona um cliente existente ou escolhe **Cadastrar
-   cliente**. O cadastro exige **Nome** e permite informar **Telefone** e
-   **Observação**.
+3. Na etapa **Cliente**, o funcionário escolhe **Cliente cadastrado** ou
+   **Criar cliente**.
+4. Ao escolher **Cliente cadastrado**, pesquisa por **Nome ou telefone** e
+   seleciona um cliente existente. Ao escolher **Criar cliente**, informa
+   **Nome** e, opcionalmente, **Telefone** e **Observação**; o novo cliente é
+   salvo e associado à venda.
 5. Na etapa **Condições da venda**, o funcionário escolhe entre **Uma dívida**
    e **Parcelar compra**.
 6. Para uma dívida única, informa **Vencimento**.
@@ -158,7 +162,8 @@ criando uma dívida com uma ou mais parcelas.
 
 | Momento | Estado | Texto ou comportamento |
 | --- | --- | --- |
-| Busca de cliente sem registros | Vazio | **Cliente não encontrado. Cadastre o cliente para continuar a venda a prazo.** |
+| Opção de cliente não selecionada | Validação | **Escolha Cliente cadastrado ou Criar cliente para continuar.** |
+| Cliente cadastrado sem resultados | Vazio | **Cliente não encontrado. Escolha Criar cliente ou tente outra busca.** |
 | Cliente não selecionado | Validação | **Selecione um cliente para registrar uma venda a prazo.** |
 | Nome ausente no cadastro | Validação | **Informe o nome do cliente.** |
 | Número de parcelas inválido | Validação | **Informe pelo menos uma parcela.** |

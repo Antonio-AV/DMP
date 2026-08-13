@@ -59,7 +59,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 13. Como funcionário, quero finalizar uma venda a prazo, para que o valor seja associado ao débito de um cliente.
 
-14. Como funcionário, quero cadastrar um cliente somente para vendas a prazo, para que não sejam criados cadastros desnecessários.
+14. Como funcionário, quero cadastrar um cliente a qualquer momento, inclusive antes de uma venda a prazo, para que possa manter o cadastro de clientes atualizado.
 
 15. Como funcionário, quero visualizar cada compra a prazo separadamente, para que saiba a origem de cada débito.
 
