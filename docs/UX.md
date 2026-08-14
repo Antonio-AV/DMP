@@ -26,8 +26,6 @@ geral correta, sem criar usuários ou permissões individuais.
    seis módulos principais.
 4. Com a senha incorreta, o sistema mantém a tela de acesso e não exibe dados ou
    ações da aplicação.
-5. Ao sair da aplicação, a sessão autenticada é encerrada e uma nova entrada
-   exige a senha geral novamente.
 
 ### Estados específicos
 
