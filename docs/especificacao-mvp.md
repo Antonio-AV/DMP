@@ -156,6 +156,8 @@ A aplicação não dependerá de internet nem de servidor externo.
   seguinte no mesmo dia.
 - Cada item guardará o preço praticado no momento da venda.
 - Produtos repetidos serão agrupados pela soma da quantidade.
+- Antes de finalizar uma venda, o sistema revalidará o estoque de todos os itens
+  do carrinho, inclusive após alterações de quantidade.
 - Uma venda finalizada reduzirá o estoque dentro da mesma transação.
 - O sistema bloqueará vendas que resultem em estoque negativo.
 - O cadastro de produto permitirá informar um estoque inicial inteiro maior ou igual a zero.
@@ -205,6 +207,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 - A finalização de uma venda a prazo deverá verificar cliente, dívida, parcelas e estoque.
 - O pagamento parcial deverá atualizar recebimentos e saldo restante.
 - O estoque deverá bloquear vendas acima da quantidade disponível.
+- A finalização deverá revalidar o estoque depois de alterações no carrinho.
 - O histórico deverá registrar entradas, ajustes, vendas e cancelamentos.
 - O cadastro de fornecedor deverá verificar fornecedor principal e fornecedores alternativos.
 - O cancelamento deverá marcar a venda, restaurar o estoque e excluir a venda dos totais líquidos.

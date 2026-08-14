@@ -66,6 +66,7 @@ feedback before any production migration.
 ## Stock Rules
 
 - Finalizing a sale decreases stock.
+- Stock is revalidated for every cart item immediately before finalization.
 - A sale that would make stock negative is blocked.
 - Cancelling an unpaid sale restores its stock.
 - Entries and inventory adjustments are recorded as stock movements.

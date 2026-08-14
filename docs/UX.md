@@ -217,13 +217,16 @@ registrando um recebimento no caixa diário.
 7. O funcionário seleciona **Continuar para pagamento**.
 8. A tela de pagamento mostra **Total da venda** e exige uma única forma:
    **Dinheiro**, **Pix**, **Débito** ou **Crédito**.
-9. O sistema mostra um resumo e pede confirmação: **Confirmar venda**.
-10. Após a confirmação, o sistema registra a venda, reduz o estoque, cria o
+9. Antes da confirmação, o sistema revalida o estoque disponível de todos os
+   itens, considerando as quantidades e preços atuais do carrinho.
+10. Se todos os itens estiverem disponíveis, o sistema mostra um resumo e pede
+    confirmação: **Confirmar venda**.
+11. Após a confirmação, o sistema registra a venda, reduz o estoque, cria o
     recebimento imediato e inclui o valor no caixa do dia dentro da mesma
     operação.
-11. No momento da confirmação, o sistema registra a **Data e hora de
+12. No momento da confirmação, o sistema registra a **Data e hora de
     finalização** da venda.
-12. A tela de sucesso mostra **Venda concluída**, o identificador da venda e a
+13. A tela de sucesso mostra **Venda concluída**, o identificador da venda e a
     data e hora de finalização, com as ações **Nova venda** e **Ir para o caixa
     diário**.
 
@@ -234,7 +237,8 @@ registrando um recebimento no caixa diário.
 | Carrinho inicial | Vazio | **Seu carrinho está vazio. Busque um produto para começar.** |
 | Busca sem resultado | Vazio | **Nenhum produto encontrado. Confira o código ou tente outra descrição.** |
 | Quantidade inválida | Validação | **Informe uma quantidade maior que zero.** |
-| Estoque insuficiente | Validação | **Estoque insuficiente. Disponível: [quantidade].** O item não é adicionado acima do saldo disponível. |
+| Estoque insuficiente ao adicionar ou editar | Validação | **Estoque insuficiente. Disponível: [quantidade].** O item não é adicionado ou editado acima do saldo disponível. |
+| Estoque insuficiente ao finalizar | Validação | **O estoque de [produto] mudou. Disponível: [quantidade]. Revise o carrinho.** A venda não é confirmada e o carrinho permanece disponível. |
 | Produto sem preço | Validação | **Este produto não tem preço cadastrado. Atualize o cadastro antes de vender.** |
 | Carrinho sem itens ao avançar | Validação | **Adicione pelo menos um produto para continuar.** |
 | Forma não escolhida | Validação | **Escolha uma forma de pagamento.** |
