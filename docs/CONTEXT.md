@@ -44,6 +44,8 @@ feedback before any production migration.
 - A sale starts as `open`, becomes `completed`, or becomes `cancelled`.
 - A completed sale stores the local date and time when confirmation finished.
 - The completion timestamp remains part of the sale history after cancellation.
+- Sale period searches compare complete local timestamps, including date and
+  time, so valid periods can cross midnight.
 - Products can be found by code or description.
 - Adding the same product more than once sums its quantity.
 - The current product price is copied to the sale item when added.

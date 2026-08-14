@@ -151,6 +151,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Uma venda terá os estados `aberta`, `finalizada` ou `cancelada`.
 - Uma venda finalizada armazenará a data e hora local em que foi confirmada.
 - A data e hora de finalização permanecerá no histórico mesmo se a venda for cancelada depois.
+- A pesquisa de vendas comparará o timestamp local completo; quando as horas
+  forem omitidas, o início usará `00:00` e o fim usará `23:59`.
 - Cada item guardará o preço praticado no momento da venda.
 - Produtos repetidos serão agrupados pela soma da quantidade.
 - Uma venda finalizada reduzirá o estoque dentro da mesma transação.

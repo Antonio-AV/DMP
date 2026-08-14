@@ -245,7 +245,8 @@ período em que foram finalizadas.
 
 1. O funcionário acessa **Vendas** e seleciona **Consultar vendas**.
 2. Informa o **Número da venda**, a **Data inicial** e a **Data final**. A hora
-   inicial e a hora final são opcionais e refinam o período da busca.
+   inicial e a hora final são opcionais e refinam o período da busca. Quando
+   omitidas, a hora inicial usa `00:00` e a hora final usa `23:59`.
 3. Seleciona **Pesquisar**.
 4. O sistema lista as vendas encontradas com **Número**, **Data e hora de
    finalização**, **Tipo**, **Total**, **Cliente** quando houver e **Status**.
@@ -259,8 +260,8 @@ período em que foram finalizadas.
 | Momento | Estado | Texto ou comportamento |
 | --- | --- | --- |
 | Sem filtros | Vazio | **Informe o número da venda ou um período para pesquisar.** |
-| Período inválido | Validação | **A data inicial não pode ser posterior à data final.** |
-| Hora fora do período | Validação | **A hora inicial deve ser anterior à hora final.** |
+| Período inválido | Validação | **A data e hora inicial não podem ser posteriores à data e hora final.** A comparação usa o timestamp completo. |
+| Período entre dias | Sucesso | Um período como `12/08/2026 18:00` até `13/08/2026 09:00` é aceito. |
 | Nenhuma venda encontrada | Vazio | **Nenhuma venda encontrada para os filtros informados.** |
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
