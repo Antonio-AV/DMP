@@ -325,7 +325,7 @@ registrando um recebimento no caixa diário.
 ### Objetivo
 
 Registrar uma venda sem recebimento imediato, associando-a a um cliente e
-criando uma dívida com uma ou mais parcelas.
+criando uma dívida única ou um parcelamento com duas ou mais parcelas.
 
 ### Fluxo principal
 
@@ -370,7 +370,7 @@ criando uma dívida com uma ou mais parcelas.
 | Cliente cadastrado sem resultados | Vazio | **Cliente não encontrado. Escolha Criar cliente ou tente outra busca.** |
 | Cliente não selecionado | Validação | **Selecione um cliente para registrar uma venda a prazo.** |
 | Nome ausente no cadastro | Validação | **Informe o nome do cliente.** |
-| Número de parcelas inválido | Validação | **Informe pelo menos uma parcela.** |
+| Número de parcelas inválido | Validação | **Informe pelo menos 2 parcelas. Para um único vencimento, escolha Uma dívida.** |
 | Número de parcelas maior que o total | Validação | **O número de parcelas não pode ser maior que o total disponível em centavos.** |
 | Vencimento da dívida ausente | Validação | **Informe o vencimento da dívida.** |
 | Vencimento de parcela ausente | Validação | **Informe o vencimento da parcela [n].** A venda não pode ser confirmada enquanto qualquer parcela estiver sem vencimento. |

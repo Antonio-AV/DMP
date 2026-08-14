@@ -55,7 +55,7 @@ feedback before any production migration.
 - Historical sale prices never change when the product catalog changes.
 - An immediate sale uses one payment method in the MVP: cash, Pix, debit, or
   credit card.
-- A credit sale requires a customer and creates one debt or multiple
+- A credit sale requires a customer and creates one debt or at least two
   installments.
 - Every credit debt has a due date. Installments have their own due dates.
 - A credit sale with installments cannot be completed until every installment
