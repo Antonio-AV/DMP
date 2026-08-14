@@ -31,7 +31,8 @@ feedback before any production migration.
   date and time when it was completed.
 - `SaleItem`: a product, quantity, and the price practiced when the sale was
   made.
-- `Customer`: a customer registered for purchases made on credit.
+- `Customer`: a customer record that can be created independently and later
+  associated with purchases made on credit.
 - `Installment`: one amount and due date belonging to a credit sale.
 - `Receipt`: a payment recorded for an immediate sale or an existing debt.
 - `DailyCash`: the daily summary of sales and receipts.
@@ -77,7 +78,8 @@ feedback before any production migration.
 
 ## Customer Debt Rules
 
-- Customers are registered only when needed for a credit sale.
+- Customers may be registered at any time, independently of an active credit
+  sale.
 - The customer view shows each credit purchase separately.
 - The customer view also shows installment values, due dates, paid amounts, and
   total outstanding debt.
