@@ -206,8 +206,11 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O cadastro de fornecedores e suas relações com produtos fará parte do MVP.
 - Pedidos de compra, cotações e relatórios avançados de fornecedores ficarão fora do MVP.
 - Haverá um caixa por dia.
-- O registro do caixa diário será criado automaticamente no primeiro acesso do
-  dia, com totais zerados e sem etapa de abertura.
+- O caixa diário será iniciado automaticamente à meia-noite, com totais zerados
+  e sem etapa de abertura. Se a aplicação estiver fechada nesse horário, o
+  registro será criado no primeiro acesso do dia antes de qualquer operação.
+- Toda transação financeira ocorrida no dia será registrada no caixa diário
+  correspondente, independentemente de o funcionário acessar a tela do caixa.
 - O caixa separará vendas à vista, vendas a prazo e recebimentos de débitos.
 - O total recebido será a soma das vendas à vista e dos recebimentos de débitos;
   vendas a prazo não pagas não entrarão nesse total.

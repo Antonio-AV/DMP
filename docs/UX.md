@@ -38,9 +38,12 @@ perder dados persistidos ou o carrinho ativo.
 - Ao escolher **Venda a prazo**, o funcionário deve selecionar **Cliente
   cadastrado** ou **Criar cliente** antes de continuar. **Criar cliente** é um
   atalho contextual para o mesmo cadastro de clientes.
-- A área **Caixa diário** mostra um único caixa por dia. No primeiro acesso do
-  dia, o sistema cria o registro automaticamente com totais zerados; abertura,
-  saldo inicial, sangria, suprimento e despesas não fazem parte do MVP.
+- A área **Caixa diário** mostra um único caixa por dia. O sistema inicia o
+  registro automaticamente à meia-noite, com totais zerados; se a aplicação
+  estiver fechada nesse momento, cria o registro no primeiro acesso do dia antes
+  de qualquer operação. Toda transação financeira do dia é registrada nesse
+  caixa, mesmo sem abrir a tela. Abertura, saldo inicial, sangria, suprimento e
+  despesas não fazem parte do MVP.
 - **Estoque** é a tela principal do catálogo: apresenta a tabela de produtos,
   pesquisa, seleção e acesso à edição dos dados cadastrais.
 - A navegação não deve ocultar validações ou confirmações pendentes de uma
@@ -468,7 +471,8 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
 9. O funcionário seleciona **Confirmar venda a prazo**.
 10. Após a confirmação, o sistema registra a venda, reduz o estoque e cria a
     dívida. Registra parcelas separadas somente quando o número escolhido for
-    `2` ou mais. Não é criado recebimento imediato.
+    `2` ou mais. Também registra a venda a prazo no caixa diário, sem criar
+    recebimento imediato nem somar o valor ao total recebido.
 11. No momento da confirmação, o sistema registra a **Data e hora de
     finalização** da venda.
 12. A tela de sucesso mostra **Venda a prazo concluída**, o cliente, o total em
@@ -678,9 +682,12 @@ com uma senha específica.
 
 ### Fluxo principal
 
-1. O funcionário acessa **Caixa diário** e escolhe a data atual.
-2. Se ainda não existir um registro para a data, o sistema cria o **Caixa
-   diário** automaticamente, sem solicitar valor ou senha de abertura.
+1. O sistema inicia o **Caixa diário** automaticamente à meia-noite, com
+   totais zerados. Se a aplicação estiver fechada nesse momento, cria o registro
+   no primeiro acesso do dia, antes de qualquer operação.
+2. O funcionário acessa **Caixa diário** e escolhe a data atual. O sistema
+   carrega todas as transações financeiras registradas para esse dia, mesmo que
+   o caixa ainda não tenha sido aberto na interface.
 3. O sistema mostra quatro blocos separados:
    - **Vendas à vista**: total das vendas recebidas no momento da compra,
      detalhado por **Dinheiro**, **Pix**, **Débito** e **Crédito**.
@@ -710,7 +717,7 @@ com uma senha específica.
 
 | Momento | Estado | Texto ou comportamento |
 | --- | --- | --- |
-| Caixa criado automaticamente | Sucesso | **Caixa diário criado automaticamente.** O acompanhamento do dia está disponível. |
+| Caixa iniciado automaticamente | Sucesso | **Caixa diário iniciado à meia-noite.** Todas as transações financeiras do dia serão registradas automaticamente. |
 | Dia sem movimento | Vazio | **Não há movimentações registradas neste dia.** O fechamento continua disponível. |
 | Contagem ausente | Validação | **Informe os valores contados antes de fechar o caixa.** |
 | Valor contado inválido | Validação | **Informe um valor igual ou maior que zero.** |
@@ -733,7 +740,8 @@ com uma senha específica.
 - Venda paga não pode ser cancelada no MVP.
 - Cancelamento mantém o histórico e restaura o estoque.
 - Toda alteração de estoque deve mostrar o saldo antes e depois.
-- O caixa consolida vendas e recebimentos, sem modelar despesas ou operações de
+- O caixa é iniciado à meia-noite e registra todas as transações financeiras do
+  dia, consolidando vendas e recebimentos, sem modelar despesas ou operações de
   abertura.
 - Não há usuários individuais nem permissões diferentes entre funcionários.
 

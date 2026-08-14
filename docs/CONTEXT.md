@@ -115,8 +115,12 @@ feedback before any production migration.
 ## Cash Rules
 
 - There is one daily cash record.
-- The daily cash record is created automatically on the first access for the
-  day, with zero totals and no opening step or opening balance.
+- The daily cash record is started automatically at midnight for the local
+  calendar day, with zero totals and no opening step or opening balance. If the
+  application is closed at midnight, it creates the record on the first access
+  of that day before any operation.
+- Every financial transaction that occurs during the day is recorded against
+  that day's cash record, whether or not the employee opens the cash screen.
 - The daily summary separates immediate sales, credit sales, debt receipts, and
   total received.
 - Immediate sales and debt receipts are grouped by payment method.
