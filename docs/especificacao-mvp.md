@@ -182,6 +182,10 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O número de parcelas não poderá ser maior que o total da venda em centavos.
 - Pagamentos parciais serão permitidos.
 - O pagamento será associado à compra a prazo selecionada pelo funcionário.
+- Em uma compra com uma única parcela, o pagamento reduzirá diretamente o saldo
+  da dívida.
+- Em uma compra parcelada, o pagamento será aplicado primeiro à parcela mais
+  antiga em aberto e seguirá para as próximas se houver valor excedente.
 - Uma venda à vista usará apenas uma forma de pagamento no MVP.
 - As formas de pagamento previstas são dinheiro, Pix, débito e crédito.
 - Todo movimento de estoque será persistido.

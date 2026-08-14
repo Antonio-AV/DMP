@@ -467,8 +467,8 @@ registrar um pagamento total ou parcial.
 ### Fluxo principal
 
 1. O funcionário acessa **Clientes** e pesquisa por **Nome ou telefone**.
-2. Seleciona o cliente e visualiza **Compras a prazo**, **Parcelas**,
-   **Pagamentos realizados** e **Total em aberto**.
+2. Seleciona o cliente e visualiza **Compras a prazo**, **Parcelas** quando
+   houver, **Pagamentos realizados** e **Total em aberto**.
 3. Seleciona a compra que está sendo paga. Cada compra aparece separadamente
    com data, total, vencimento, valor pago e saldo.
 4. Seleciona **Registrar recebimento**, informa **Valor recebido** e escolhe
@@ -476,9 +476,13 @@ registrar um pagamento total ou parcial.
 5. O sistema mostra o saldo anterior, o valor informado, a forma de pagamento
    e o saldo após o recebimento.
 6. O funcionário confirma em **Confirmar recebimento**.
-7. O sistema registra o recebimento associado à compra selecionada e atualiza
-   a parcela, a dívida do cliente e o caixa diário.
-8. A tela de sucesso mostra **Recebimento registrado** e o **Novo saldo em
+7. Se a compra tiver uma única parcela, o sistema abate o valor diretamente do
+   saldo da dívida. Nenhuma parcela separada é atualizada nesse caso.
+8. Se a compra tiver várias parcelas, o sistema abate o recebimento primeiro da
+   parcela mais antiga em aberto. Se houver valor excedente, continua pelas
+   próximas parcelas em ordem de vencimento.
+9. O sistema atualiza a dívida do cliente e o caixa diário.
+10. A tela de sucesso mostra **Recebimento registrado** e o **Novo saldo em
    aberto**.
 
 ### Estados específicos
@@ -491,6 +495,8 @@ registrar um pagamento total ou parcial.
 | Valor ausente ou zero | Validação | **Informe um valor recebido maior que zero.** |
 | Valor acima do saldo | Validação | **O valor recebido não pode ser maior que o saldo em aberto.** |
 | Forma de pagamento não escolhida | Validação | **Escolha uma forma de pagamento.** |
+| Dívida única | Resultado | **Recebimento abatido diretamente da dívida.** |
+| Compra parcelada | Resultado | **Recebimento abatido da parcela mais antiga em aberto.** |
 | Resumo do recebimento | Confirmação | **Confirme o recebimento de [valor] em [forma] para a compra de [data].** |
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |

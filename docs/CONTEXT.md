@@ -68,6 +68,10 @@ feedback before any production migration.
   equals the sale total exactly.
 - The installment count cannot exceed the sale total in cents.
 - Payments may be partial and are applied to the selected credit purchase.
+- A payment for a single-debt purchase reduces the debt balance directly.
+- A payment for a purchase with multiple installments is applied first to the
+  oldest open installment, then to subsequent installments if there is a
+  remaining amount.
 
 ## Stock Rules
 
