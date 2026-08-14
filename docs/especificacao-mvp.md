@@ -198,6 +198,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O caixa separará vendas à vista, vendas a prazo e recebimentos de débitos.
 - O total recebido será a soma das vendas à vista e dos recebimentos de débitos;
   vendas a prazo não pagas não entrarão nesse total.
+- A diferença do caixa será calculada como total contado menos total esperado;
+  valor negativo representa falta e valor positivo representa sobra.
 - O caixa não modelará inicialmente abertura, sangria, suprimentos ou despesas.
 - O fechamento exigirá uma senha específica.
 - Não haverá usuários individuais ou permissões diferenciadas.
@@ -221,6 +223,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O caixa deverá separar vendas à vista, vendas a prazo, recebimentos de débitos,
   formas de pagamento e o total efetivamente recebido.
 - O fechamento deverá exigir a senha correta.
+- O fechamento deverá registrar corretamente falta, sobra ou ausência de diferença
+  usando a fórmula total contado menos total esperado.
 - O aplicativo empacotado deverá ser validado em ambiente Windows.
 - O repositório ainda não possui testes anteriores; a suíte de casos de uso será a primeira convenção do projeto.
 - Testes da interface Streamlit cobrirão apenas jornadas mínimas e sua integração com os casos de uso.

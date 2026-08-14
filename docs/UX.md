@@ -573,8 +573,11 @@ com uma senha específica.
 4. O funcionário informa os valores físicos conferidos por forma de pagamento:
    **Dinheiro contado**, **Pix conferido**, **Débito conferido** e **Crédito
    conferido**, quando aplicável.
-5. O sistema calcula e mostra a **Diferença** entre o total esperado e o total
-   contado.
+5. O sistema calcula e mostra a **Diferença**, usando a fórmula **Total
+   contado - Total esperado**.
+   - Resultado negativo indica **Falta**.
+   - Resultado positivo indica **Sobra**.
+   - Resultado zero indica **Caixa conferido sem diferença**.
 6. O funcionário seleciona **Fechar caixa**.
 7. O sistema mostra o resumo da conferência e pede a **Senha de fechamento**.
 8. Com a senha correta, o funcionário confirma em **Confirmar fechamento**.
@@ -591,7 +594,10 @@ com uma senha específica.
 | Senha ausente | Validação | **Informe a senha de fechamento.** |
 | Senha incorreta | Erro | **Senha de fechamento incorreta. O caixa não foi fechado.** |
 | Caixa já fechado | Validação | **O caixa deste dia já está fechado.** |
-| Resumo antes do fechamento | Confirmação | **Confirme o fechamento do caixa de [data]. Total recebido: [valor]. Diferença: [valor].** |
+| Diferença negativa | Resultado | **Falta no caixa: [valor].** O valor contado ficou abaixo do esperado. |
+| Diferença positiva | Resultado | **Sobra no caixa: [valor].** O valor contado ficou acima do esperado. |
+| Sem diferença | Resultado | **Caixa conferido sem diferença.** O total contado é igual ao esperado. |
+| Resumo antes do fechamento | Confirmação | **Confirme o fechamento do caixa de [data]. Total esperado: [valor]. Total contado: [valor]. Diferença: [valor].** |
 | Falha no fechamento | Erro | **Não foi possível fechar o caixa. Tente novamente.** |
 | Fechamento concluído | Sucesso | **Caixa fechado com sucesso. Diferença registrada: [valor].** |
 

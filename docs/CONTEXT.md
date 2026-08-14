@@ -110,6 +110,8 @@ feedback before any production migration.
 - Immediate sales and debt receipts are grouped by payment method.
 - Total received equals immediate sales receipts plus debt receipts; unpaid
   credit sales are excluded until payment.
+- Cash difference is calculated as counted total minus expected total: negative
+  means shortage, positive means surplus, and zero means no difference.
 - The employee can enter physical counted amounts at closing for comparison.
 - Closing the cash requires a separate password.
 - The MVP does not model opening balance, withdrawals, supplies, or expenses.
