@@ -78,6 +78,8 @@ feedback before any production migration.
 ## Stock Rules
 
 - Finalizing a sale decreases stock.
+- Editing product data does not change stock; stock changes use entries or
+  inventory adjustments.
 - Stock is revalidated for every cart item immediately before finalization.
 - A sale that would make stock negative is blocked.
 - Cancelling an unpaid sale restores its stock.

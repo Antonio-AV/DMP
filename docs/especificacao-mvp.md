@@ -33,7 +33,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 ## Histórias de Usuário
 
-1. Como funcionário, quero cadastrar um produto com código, descrição, preço e estoque inicial, para que ele possa ser vendido e controlado no estoque desde o cadastro.
+1. Como funcionário, quero cadastrar e editar um produto com código, descrição, preço e estoque inicial, para que seus dados permaneçam atualizados sem alterar o histórico de estoque.
 
 2. Como funcionário, quero acessar o sistema com uma senha geral, para que apenas pessoas autorizadas usem a aplicação.
 
@@ -160,6 +160,8 @@ A aplicação não dependerá de internet nem de servidor externo.
   do carrinho, inclusive após alterações de quantidade.
 - Uma venda finalizada reduzirá o estoque dentro da mesma transação.
 - O sistema bloqueará vendas que resultem em estoque negativo.
+- A edição dos dados cadastrais de um produto não alterará seu estoque; mudanças
+  de estoque serão feitas por entradas ou ajustes.
 - O cadastro de produto permitirá informar um estoque inicial inteiro maior ou igual a zero.
 - O estoque inicial será registrado como uma entrada no histórico de movimentações,
   inclusive quando for zero.
