@@ -27,10 +27,12 @@ feedback before any production migration.
 - `Supplier`: a company that supplies products to the store.
 - `ProductSupplier`: the relationship between a product and a supplier. A
   product has one primary supplier and may have alternative suppliers.
-- `Sale`: a sale with items, a total, a type, and a lifecycle status.
+- `Sale`: a sale with items, a total, a type, a lifecycle status, and the local
+  date and time when it was completed.
 - `SaleItem`: a product, quantity, and the price practiced when the sale was
   made.
-- `Customer`: a customer registered for purchases made on credit.
+- `Customer`: a customer record that can be created independently and later
+  associated with purchases made on credit.
 - `Installment`: one amount and due date belonging to a credit sale.
 - `Receipt`: a payment recorded for an immediate sale or an existing debt.
 - `DailyCash`: the daily summary of sales and receipts.
@@ -39,33 +41,66 @@ feedback before any production migration.
 
 ## Sale Rules
 
+- The application requires the shared general password before exposing any
+  module or business data.
+- All employees use the same general password in the MVP; there are no
+  individual users or differentiated permissions.
 - A sale starts as `open`, becomes `completed`, or becomes `cancelled`.
+- A completed sale stores the local date and time when confirmation finished.
+- The completion timestamp remains part of the sale history after cancellation.
+- Sale searches may use the sale number or a selected local date and hour; the
+  selected hour includes minutes `HH:00` through `HH:59` and all seconds in
+  that range on the selected date, including the final hour `23:00`-`23:59`.
 - Products can be found by code or description.
 - Adding the same product more than once sums its quantity.
 - The current product price is copied to the sale item when added.
 - An employee may edit the practiced item price during the sale.
+- Product prices, practiced prices, installment amounts, and payments must be
+  greater than zero; negative values are rejected.
 - Historical sale prices never change when the product catalog changes.
 - An immediate sale uses one payment method in the MVP: cash, Pix, debit, or
   credit card.
-- A credit sale requires a customer and creates one debt or multiple
-  installments.
+- A credit sale requires a customer and starts with one debt by default.
+- The employee may change the installment count to one or more; one keeps the
+  single-debt flow, while two or more create installments.
+- A single-debt sale stores no separate installment record; the debt stores the
+  total value and its due date.
 - Every credit debt has a due date. Installments have their own due dates.
-- Installments may be calculated automatically or edited manually.
+- A credit sale with installments cannot be completed until every installment
+  has a due date.
+- Installment amounts and monthly due dates are calculated automatically from
+  the sale date; the employee may edit both before confirmation.
+- Remainder cents are distributed across the first installments so their sum
+  equals the sale total exactly.
+- The installment count cannot exceed the sale total in cents.
 - Payments may be partial and are applied to the selected credit purchase.
+- A payment for a single-debt purchase reduces the debt balance directly.
+- A payment for a purchase with multiple installments is applied first to the
+  oldest open installment, then to subsequent installments if there is a
+  remaining amount.
 
 ## Stock Rules
 
 - Finalizing a sale decreases stock.
+- Editing product data does not change stock; stock changes use entries or
+  inventory adjustments.
+- Stock is revalidated for every cart item immediately before finalization.
 - A sale that would make stock negative is blocked.
-- Cancelling an unpaid sale restores its stock.
+- Cancelling an unpaid sale restores its stock. For a credit sale with no
+  payments, the associated debt or installments are cancelled as part of the
+  same operation.
 - Entries and inventory adjustments are recorded as stock movements.
 - Every stock movement remains available for audit and explanation.
 - A stock entry may identify its supplier.
+- The initial product stock movement may have quantity zero; all other stock
+  movements require a positive quantity.
 
 ## Supplier Rules
 
 - A supplier can provide many products.
-- A product has one primary supplier and may have alternative suppliers.
+- A product must have one primary supplier and may have alternative suppliers.
+- The primary supplier cannot also be listed as an alternative supplier for the
+  same product.
 - Suppliers may be archived instead of physically deleted when historical
   records refer to them.
 - Supplier registration and product relationships are part of the MVP.
@@ -74,20 +109,34 @@ feedback before any production migration.
 
 ## Customer Debt Rules
 
-- Customers are registered only when needed for a credit sale.
+- Customers may be registered at any time, independently of an active credit
+  sale.
 - The customer view shows each credit purchase separately.
 - The customer view also shows installment values, due dates, paid amounts, and
   total outstanding debt.
 - A payment is linked to the credit purchase selected by the employee.
+- A fully unpaid credit sale may be cancelled; its debt or installments are
+  marked as cancelled, removed from the outstanding balance, and cannot receive
+  future payments.
 - Cancelling a partially paid sale is deliberately deferred until its refund or
   credit behavior is validated with the store owners.
 
 ## Cash Rules
 
 - There is one daily cash record.
-- The daily summary separates immediate sales, credit sales, customer receipts,
-  and total received.
-- Immediate receipts are grouped by payment method.
+- The daily cash record is started automatically at midnight for the local
+  calendar day, with zero totals and no opening step or opening balance. If the
+  application is closed at midnight, it creates the record on the first access
+  of that day before any operation.
+- Every financial transaction that occurs during the day is recorded against
+  that day's cash record, whether or not the employee opens the cash screen.
+- The daily summary separates immediate sales, credit sales, debt receipts, and
+  total received.
+- Immediate sales and debt receipts are grouped by payment method.
+- Total received equals immediate sales receipts plus debt receipts; unpaid
+  credit sales are excluded until payment.
+- Cash difference is calculated as counted total minus expected total: negative
+  means shortage, positive means surplus, and zero means no difference.
 - The employee can enter physical counted amounts at closing for comparison.
 - Closing the cash requires a separate password.
 - The MVP does not model opening balance, withdrawals, supplies, or expenses.
