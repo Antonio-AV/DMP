@@ -544,10 +544,11 @@ registrar um pagamento total ou parcial.
 ### Fluxo principal
 
 1. O funcionário acessa **Clientes** e pesquisa por **Nome ou telefone**.
-2. Seleciona o cliente e visualiza **Compras a prazo**, **Parcelas** quando
-   houver, **Pagamentos realizados** e **Total em aberto**.
-3. Seleciona a compra que está sendo paga. Cada compra aparece separadamente
-   com data, total, vencimento, valor pago e saldo.
+2. Seleciona o cliente e visualiza **Compras a prazo**, o **Status**, **Parcelas**
+   quando houver, **Pagamentos realizados** e **Total em aberto**. Compras
+   canceladas permanecem no histórico, mas não compõem o saldo em aberto.
+3. Seleciona uma compra em aberto que está sendo paga. Cada compra aparece
+   separadamente com data, total, vencimento, valor pago e saldo.
 4. Seleciona **Registrar recebimento**, informa **Valor recebido** e escolhe
    uma **Forma de pagamento**: **Dinheiro**, **Pix**, **Débito** ou **Crédito**.
 5. O sistema mostra o saldo anterior, o valor informado, a forma de pagamento
@@ -569,6 +570,7 @@ registrar um pagamento total ou parcial.
 | --- | --- | --- |
 | Busca sem clientes | Vazio | **Nenhum cliente encontrado.** |
 | Cliente sem compras em aberto | Vazio | **Este cliente não possui compras a prazo em aberto.** |
+| Compra cancelada | Validação | **Esta compra foi cancelada e não aceita recebimentos.** |
 | Nenhuma compra selecionada | Validação | **Selecione a compra que está sendo paga.** |
 | Valor ausente ou zero | Validação | **Informe um valor recebido maior que zero.** |
 | Valor acima do saldo | Validação | **O valor recebido não pode ser maior que o saldo em aberto.** |
@@ -643,23 +645,29 @@ mantendo o histórico da alteração.
 
 ### Objetivo
 
-Corrigir uma venda não paga sem apagar o histórico, restaurando as unidades
-ao estoque e retirando a venda dos totais líquidos.
+Corrigir uma venda não paga sem apagar o histórico, restaurando as unidades ao
+estoque, retirando a venda dos totais líquidos e encerrando sua dívida quando
+for uma venda a prazo sem pagamentos.
 
 ### Fluxo principal
 
 1. O funcionário acessa **Vendas** e pesquisa pelo **Número da venda** ou pelos
    filtros de data e hora de finalização.
-2. Seleciona uma venda com status **Concluída** e sem recebimento associado.
+2. Seleciona uma venda com status **Concluída** e sem recebimento associado. Uma
+   venda a prazo só pode ser cancelada se sua dívida e suas parcelas não tiverem
+   pagamentos.
 3. Confere os itens, o total e o impacto: **O estoque será restaurado e a
-   venda não entrará nos totais líquidos.**
+   venda não entrará nos totais líquidos.** Se for uma venda a prazo, a dívida
+   ou suas parcelas também serão canceladas e não aceitarão recebimentos.
 4. Seleciona **Cancelar venda**.
 5. O sistema pede confirmação com o motivo opcional: **Esta ação não pode ser
    desfeita. Confirmar cancelamento?**
 6. Após confirmar, a venda passa para **Cancelada**, o estoque é restaurado e
-   um movimento de cancelamento é criado. O registro original permanece no
-   histórico.
-7. A tela de sucesso mostra **Venda cancelada** e o estoque restaurado.
+   um movimento de cancelamento é criado. Se for uma venda a prazo sem
+   pagamentos, a dívida ou suas parcelas passam para **Cancelada** na mesma
+   operação. O registro original permanece no histórico.
+7. A tela de sucesso mostra **Venda cancelada**, o estoque restaurado e, quando
+   aplicável, **Dívida cancelada**.
 
 ### Estados específicos
 
@@ -668,10 +676,11 @@ ao estoque e retirando a venda dos totais líquidos.
 | Nenhuma venda encontrada | Vazio | **Nenhuma venda encontrada para os filtros informados.** |
 | Venda já cancelada | Validação | **Esta venda já está cancelada.** |
 | Venda paga | Validação | **Vendas com recebimento não podem ser canceladas no MVP.** |
+| Venda a prazo com pagamento | Validação | **Vendas a prazo com pagamento não podem ser canceladas no MVP.** O estorno ou crédito ainda não faz parte do fluxo. |
 | Venda aberta | Validação | **Finalize ou descarte a venda antes de consultar o cancelamento.** |
-| Antes do cancelamento | Confirmação | **Esta ação restaurará [quantidade] unidade(s) e removerá [valor] dos totais líquidos.** |
+| Antes do cancelamento | Confirmação | **Esta ação restaurará [quantidade] unidade(s), removerá [valor] dos totais líquidos e cancelará a dívida, quando houver.** |
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
-| Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
+| Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado, o histórico foi mantido e a dívida foi cancelada, quando aplicável.** |
 
 ## Jornada 16: Fechar Caixa Diário
 
@@ -738,6 +747,9 @@ com uma senha específica.
   múltiplas.
 - Pagamentos podem ser parciais, mas não podem exceder o saldo em aberto.
 - Venda paga não pode ser cancelada no MVP.
+- Venda a prazo sem pagamentos pode ser cancelada; sua dívida ou parcelas são
+  canceladas e não aceitam recebimentos futuros.
+- Venda a prazo com pagamentos não pode ser cancelada no MVP.
 - Cancelamento mantém o histórico e restaura o estoque.
 - Toda alteração de estoque deve mostrar o saldo antes e depois.
 - O caixa é iniciado à meia-noite e registra todas as transações financeiras do

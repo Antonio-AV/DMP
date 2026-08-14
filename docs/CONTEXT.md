@@ -82,7 +82,9 @@ feedback before any production migration.
   inventory adjustments.
 - Stock is revalidated for every cart item immediately before finalization.
 - A sale that would make stock negative is blocked.
-- Cancelling an unpaid sale restores its stock.
+- Cancelling an unpaid sale restores its stock. For a credit sale with no
+  payments, the associated debt or installments are cancelled as part of the
+  same operation.
 - Entries and inventory adjustments are recorded as stock movements.
 - Every stock movement remains available for audit and explanation.
 - A stock entry may identify its supplier.
@@ -109,6 +111,9 @@ feedback before any production migration.
 - The customer view also shows installment values, due dates, paid amounts, and
   total outstanding debt.
 - A payment is linked to the credit purchase selected by the employee.
+- A fully unpaid credit sale may be cancelled; its debt or installments are
+  marked as cancelled, removed from the outstanding balance, and cannot receive
+  future payments.
 - Cancelling a partially paid sale is deliberately deferred until its refund or
   credit behavior is validated with the store owners.
 

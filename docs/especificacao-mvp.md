@@ -197,6 +197,13 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Os movimentos previstos são entrada, venda, cancelamento e ajuste.
 - O cancelamento manterá a venda no histórico e criará o movimento de estorno do estoque.
 - O MVP permitirá cancelar somente vendas ainda não pagas.
+- Quando a venda a prazo não tiver recebimentos, o cancelamento também marcará a
+  dívida única ou suas parcelas como canceladas, removendo-as do saldo em aberto
+  e bloqueando novos recebimentos.
+- O cancelamento da venda, da dívida ou parcelas, a restauração do estoque e o
+  movimento de cancelamento serão persistidos na mesma transação.
+- Vendas a prazo com recebimentos permanecerão não canceláveis no MVP até que a
+  regra de estorno ou crédito seja validada.
 - Um fornecedor poderá fornecer vários produtos.
 - O cadastro de produto exigirá um fornecedor principal; fornecedores alternativos serão opcionais.
 - O fornecedor principal não poderá ser repetido entre os fornecedores alternativos do mesmo produto.
@@ -234,6 +241,9 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O estoque deverá bloquear vendas acima da quantidade disponível.
 - A finalização deverá revalidar o estoque depois de alterações no carrinho.
 - O histórico deverá registrar entradas, ajustes, vendas e cancelamentos.
+- O cancelamento de uma venda a prazo sem recebimentos deverá cancelar a dívida
+  ou suas parcelas e impedir recebimentos futuros.
+- O cancelamento de uma venda a prazo com recebimentos deverá ser bloqueado.
 - O cadastro de fornecedor deverá verificar fornecedor principal e fornecedores alternativos.
 - O cancelamento deverá marcar a venda, restaurar o estoque e excluir a venda dos totais líquidos.
 - O caixa deverá separar vendas à vista, vendas a prazo, recebimentos de débitos,
@@ -268,4 +278,5 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 - Este MVP é uma demonstração funcional com dados simulados, não uma substituição imediata do sistema atual.
 - A operação real deverá ser validada com os responsáveis da papelaria antes da migração.
-- As regras de cancelamento de vendas parcialmente pagas ainda precisam ser definidas antes de entrarem no produto.
+- O cancelamento de vendas parcialmente pagas permanece fora do MVP até que a
+  regra de estorno ou crédito seja validada.
