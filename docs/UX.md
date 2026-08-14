@@ -19,7 +19,7 @@ perder dados persistidos ou o carrinho ativo.
 | Item da navegação | Objetivo | Ação principal |
 | --- | --- | --- |
 | **Produtos** | Cadastrar produtos e iniciar o cadastro de um novo item. | **Cadastrar produto** |
-| **Fornecedores** | Consultar e cadastrar fornecedores e relacioná-los aos produtos. | **Cadastrar fornecedor** |
+| **Fornecedores** | Consultar e cadastrar fornecedores e relacioná-los aos produtos. | **Consultar fornecedores** ou **Cadastrar fornecedor** |
 | **Vendas** | Iniciar venda à vista ou a prazo e consultar vendas realizadas. | **Nova venda** |
 | **Estoque** | Consultar produtos, editar seus dados e registrar operações de estoque. | **Consultar produtos** ou **Registrar entrada** |
 | **Clientes** | Consultar clientes, compras a prazo, parcelas, saldo e recebimentos. | **Cadastrar cliente** ou **Registrar recebimento** |
@@ -48,7 +48,33 @@ perder dados persistidos ou o carrinho ativo.
 - Todas as telas devem usar textos em português e valores monetários no formato
   de reais, por exemplo `R$ 12,50`.
 
-## Jornada 1: Cadastrar Fornecedor
+## Jornada 1: Consultar Fornecedores
+
+### Objetivo
+
+Oferecer uma lista central de fornecedores para que o funcionário consiga
+localizar um fornecedor já cadastrado e abrir seus detalhes.
+
+### Fluxo principal
+
+1. O funcionário acessa **Fornecedores**.
+2. O sistema mostra a tabela com os fornecedores cadastrados. Cada linha mostra
+   **Nome**, **Telefone**, **E-mail**, **Status** e **Quantidade de produtos**.
+3. O funcionário pesquisa usando **Nome, telefone ou e-mail**.
+4. O sistema atualiza a tabela com os fornecedores correspondentes.
+5. O funcionário seleciona uma linha para abrir **Ver fornecedor**.
+6. A tela oferece **Cadastrar fornecedor** para incluir um novo registro.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Catálogo com fornecedores | Sucesso | Mostra a tabela completa, com uma ação de seleção em cada linha. |
+| Catálogo sem fornecedores | Vazio | **Nenhum fornecedor cadastrado. Cadastre o primeiro fornecedor para começar.** |
+| Busca sem resultados | Vazio | **Nenhum fornecedor encontrado para os dados informados.** |
+| Falha ao carregar catálogo | Erro | **Não foi possível carregar os fornecedores. Tente novamente.** |
+
+## Jornada 2: Cadastrar Fornecedor
 
 ### Objetivo
 
@@ -76,7 +102,7 @@ principal ou alternativo de produtos e associado a entradas de estoque.
 | Falha no registro | Erro | **Não foi possível cadastrar o fornecedor. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Fornecedor cadastrado com sucesso.** |
 
-## Jornada 2: Consultar Produtos Do Fornecedor
+## Jornada 3: Consultar Produtos Do Fornecedor
 
 ### Objetivo
 
@@ -85,8 +111,9 @@ de reposição e distinguir os produtos em que ele é principal ou alternativo.
 
 ### Fluxo principal
 
-1. O funcionário acessa **Fornecedores** e seleciona um fornecedor.
-2. Seleciona **Ver fornecedor**.
+1. O funcionário acessa **Fornecedores**, pesquisa se necessário e seleciona
+   uma linha da tabela.
+2. Abre **Ver fornecedor**.
 3. O sistema mostra os dados do fornecedor e duas seções de produtos:
    **Produtos principais** e **Produtos alternativos**.
 4. Cada produto mostra **Código**, **Descrição**, **Preço de venda** e
@@ -107,7 +134,7 @@ de reposição e distinguir os produtos em que ele é principal ou alternativo.
 | Fornecedor não encontrado | Erro | **Não foi possível localizar o fornecedor. Volte para a lista e tente novamente.** |
 | Falha ao consultar produtos | Erro | **Não foi possível carregar os produtos deste fornecedor. Tente novamente.** |
 
-## Jornada 3: Cadastrar Produto
+## Jornada 4: Cadastrar Produto
 
 ### Objetivo
 
@@ -207,7 +234,7 @@ As telas críticas usam os seguintes estados visíveis:
 | Confirmação | Resume o impacto da ação e oferece **Confirmar** e **Voltar e editar**. |
 | Sucesso | Confirma o registro e oferece a próxima ação relevante. |
 
-## Jornada 4: Consultar Estoque E Produtos
+## Jornada 5: Consultar Estoque E Produtos
 
 ### Objetivo
 
@@ -235,7 +262,7 @@ seleção e acesso aos dados de cada item.
 | Busca sem resultados | Vazio | **Nenhum produto encontrado para Código ou nome informado.** |
 | Falha ao carregar catálogo | Erro | **Não foi possível carregar os produtos. Tente novamente.** |
 
-## Jornada 5: Consultar E Editar Produto
+## Jornada 6: Consultar E Editar Produto
 
 ### Objetivo
 
@@ -279,7 +306,7 @@ estoque sem alterar o estoque diretamente na tela de edição.
 | Falha ao salvar alterações | Erro | **Não foi possível atualizar o produto. Tente novamente.** Os dados preenchidos são preservados. |
 | Falha ao carregar produto | Erro | **Não foi possível carregar os dados do produto. Tente novamente.** |
 
-## Jornada 6: Consultar Histórico De Movimentações
+## Jornada 7: Consultar Histórico De Movimentações
 
 ### Objetivo
 
@@ -315,7 +342,7 @@ movimentos ou apenas os movimentos de um produto.
 | Detalhe do movimento | Sucesso | Mostra todos os dados do movimento selecionado e permite voltar à lista. |
 | Falha ao consultar histórico | Erro | **Não foi possível carregar o histórico de estoque. Tente novamente.** |
 
-## Jornada 7: Cadastrar Cliente
+## Jornada 8: Cadastrar Cliente
 
 ### Objetivo
 
@@ -343,7 +370,7 @@ prazo, para que ele possa ser localizado e associado a compras futuras.
 | Falha no registro | Erro | **Não foi possível cadastrar o cliente. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Cliente cadastrado com sucesso.** Nenhuma venda ou dívida foi criada. |
 
-## Jornada 8: Venda À Vista
+## Jornada 9: Venda À Vista
 
 ### Objetivo
 
@@ -397,7 +424,7 @@ registrando um recebimento no caixa diário.
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
 | Registro concluído | Sucesso | **Venda concluída em [data e hora]. Estoque e caixa foram atualizados.** |
 
-## Jornada 9: Venda A Prazo
+## Jornada 10: Venda A Prazo
 
 ### Objetivo
 
@@ -466,7 +493,7 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Venda a prazo concluída em [data e hora]. Dívida criada para [cliente].** |
 
-## Jornada 10: Consultar Vendas
+## Jornada 11: Consultar Vendas
 
 ### Objetivo
 
@@ -503,7 +530,7 @@ dia e hora em que foram finalizadas.
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
 
-## Jornada 11: Consultar Dívida E Registrar Pagamento
+## Jornada 12: Consultar Dívida E Registrar Pagamento
 
 ### Objetivo
 
@@ -548,7 +575,7 @@ registrar um pagamento total ou parcial.
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
-## Jornada 12: Entrada De Estoque
+## Jornada 13: Entrada De Estoque
 
 ### Objetivo
 
@@ -578,7 +605,7 @@ fornecedor opcional.
 | Falha no registro | Erro | **Não foi possível registrar a entrada. Tente novamente.** |
 | Registro concluído | Sucesso | **Entrada registrada. Novo estoque: [quantidade].** |
 
-## Jornada 13: Ajuste De Inventário
+## Jornada 14: Ajuste De Inventário
 
 ### Objetivo
 
@@ -608,7 +635,7 @@ mantendo o histórico da alteração.
 | Falha no registro | Erro | **Não foi possível registrar o ajuste. Tente novamente.** |
 | Registro concluído | Sucesso | **Ajuste registrado. Novo estoque: [quantidade].** |
 
-## Jornada 14: Cancelar Venda Não Paga
+## Jornada 15: Cancelar Venda Não Paga
 
 ### Objetivo
 
@@ -642,7 +669,7 @@ ao estoque e retirando a venda dos totais líquidos.
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
 | Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
 
-## Jornada 15: Fechar Caixa Diário
+## Jornada 16: Fechar Caixa Diário
 
 ### Objetivo
 
