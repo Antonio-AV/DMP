@@ -118,8 +118,11 @@ jornada de **Entrada de estoque**.
 1. O funcionário acessa **Produtos** e seleciona **Cadastrar produto**.
 2. Informa o **Código**, a **Descrição**, o **Preço de venda** e o **Estoque
    inicial**.
-3. Seleciona um **Fornecedor principal** já cadastrado. Opcionalmente, seleciona
-   um ou mais **Fornecedores alternativos** também já cadastrados.
+3. Seleciona um **Fornecedor principal** já cadastrado. O seletor de
+   **Fornecedores alternativos** mostra apenas fornecedores diferentes do
+   principal; o fornecedor escolhido como principal fica removido ou
+   desabilitado nessa lista. O funcionário pode selecionar um ou mais
+   alternativos.
 4. O sistema mostra um resumo com código, descrição, preço, fornecedores e
    **Estoque inicial: [quantidade] unidade(s)**.
 5. O funcionário seleciona **Confirmar cadastro**.
@@ -142,6 +145,7 @@ jornada de **Entrada de estoque**.
 | Preço ausente ou inválido | Validação | **Informe um preço de venda maior que zero.** |
 | Estoque inicial ausente ou inválido | Validação | **Informe uma quantidade inteira de estoque maior ou igual a zero.** |
 | Fornecedor principal não selecionado | Validação | **Selecione um fornecedor principal para cadastrar o produto.** |
+| Principal também selecionado como alternativo | Validação | **O fornecedor principal não pode ser um fornecedor alternativo.** O cadastro não é confirmado. |
 | Fornecedor não encontrado | Validação | **Selecione um fornecedor cadastrado ou cadastre um novo fornecedor.** |
 | Resumo do cadastro | Confirmação | **Confirme o cadastro do produto [descrição] com preço de [valor] e estoque inicial de [quantidade] unidade(s).** |
 | Falha no registro | Erro | **Não foi possível cadastrar o produto. Tente novamente.** Os dados preenchidos são preservados. |

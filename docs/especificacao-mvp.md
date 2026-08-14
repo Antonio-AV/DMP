@@ -188,6 +188,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O MVP permitirá cancelar somente vendas ainda não pagas.
 - Um fornecedor poderá fornecer vários produtos.
 - O cadastro de produto exigirá um fornecedor principal; fornecedores alternativos serão opcionais.
+- O fornecedor principal não poderá ser repetido entre os fornecedores alternativos do mesmo produto.
 - A relação entre produto e fornecedor será persistida separadamente para suportar essa cardinalidade.
 - Fornecedores referenciados por históricos não serão apagados fisicamente; serão arquivados.
 - Uma entrada manual de estoque poderá identificar o fornecedor.
