@@ -302,29 +302,33 @@ criando uma dívida com uma ou mais parcelas.
 ### Objetivo
 
 Localizar vendas já finalizadas ou canceladas pelo número da venda ou pelo
-período em que foram finalizadas.
+dia e hora em que foram finalizadas.
 
 ### Fluxo principal
 
 1. O funcionário acessa **Vendas** e seleciona **Consultar vendas**.
-2. Informa o **Número da venda**, a **Data inicial** e a **Data final**. A hora
-   inicial e a hora final são opcionais e refinam o período da busca. Quando
-   omitidas, a hora inicial usa `00:00` e a hora final usa `23:59`.
-3. Seleciona **Pesquisar**.
-4. O sistema lista as vendas encontradas com **Número**, **Data e hora de
+2. Escolhe um modo de busca: **Número da venda** ou **Data e hora**.
+3. Se escolher **Número da venda**, informa o número da venda.
+4. Se escolher **Data e hora**, seleciona a **Data da venda** e uma **Hora da
+   venda**. A hora representa o intervalo completo daquela hora: por exemplo,
+   `15:00` busca vendas finalizadas de `15:00:00` até antes de `16:00:00`.
+5. Seleciona **Pesquisar**.
+6. O sistema lista as vendas encontradas com **Número**, **Data e hora de
    finalização**, **Tipo**, **Total**, **Cliente** quando houver e **Status**.
-5. O funcionário seleciona uma venda para visualizar seus itens, pagamento ou
+7. O funcionário seleciona uma venda para visualizar seus itens, pagamento ou
    dívida e os detalhes do histórico.
-6. A busca pode ser refeita alterando os filtros ou selecionando **Limpar
+8. A busca pode ser refeita alterando os filtros ou selecionando **Limpar
    filtros**.
 
 ### Estados específicos
 
 | Momento | Estado | Texto ou comportamento |
 | --- | --- | --- |
-| Sem filtros | Vazio | **Informe o número da venda ou um período para pesquisar.** |
-| Período inválido | Validação | **A data e hora inicial não podem ser posteriores à data e hora final.** A comparação usa o timestamp completo. |
-| Período entre dias | Sucesso | Um período como `12/08/2026 18:00` até `13/08/2026 09:00` é aceito. |
+| Modo de busca não selecionado | Validação | **Escolha buscar por número da venda ou por data e hora.** |
+| Número ausente | Validação | **Informe o número da venda.** |
+| Data ausente | Validação | **Selecione a data da venda.** |
+| Hora ausente | Validação | **Selecione a hora da venda.** |
+| Hora selecionada | Sucesso | Busca todas as vendas finalizadas dentro da hora escolhida, das `HH:00:00` até antes da próxima hora. |
 | Nenhuma venda encontrada | Vazio | **Nenhuma venda encontrada para os filtros informados.** |
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |

@@ -57,7 +57,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 12. Como funcionário, quero registrar a data e hora de finalização de cada venda, para que o histórico registre quando a operação foi concluída.
 
-13. Como funcionário, quero pesquisar vendas pelo número ou pelo período de data e hora de finalização, para que consiga localizar operações anteriores.
+13. Como funcionário, quero pesquisar vendas pelo número ou por uma data e hora de finalização, para que consiga localizar todas as vendas daquela hora.
 
 14. Como funcionário, quero registrar dinheiro, Pix, débito ou crédito, para que o recebimento seja classificado.
 
@@ -151,8 +151,9 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Uma venda terá os estados `aberta`, `finalizada` ou `cancelada`.
 - Uma venda finalizada armazenará a data e hora local em que foi confirmada.
 - A data e hora de finalização permanecerá no histórico mesmo se a venda for cancelada depois.
-- A pesquisa de vendas comparará o timestamp local completo; quando as horas
-  forem omitidas, o início usará `00:00` e o fim usará `23:59`.
+- A pesquisa de vendas poderá usar o número da venda ou uma data e hora
+  selecionadas; a hora selecionada buscará do minuto `00` até antes da hora
+  seguinte no mesmo dia.
 - Cada item guardará o preço praticado no momento da venda.
 - Produtos repetidos serão agrupados pela soma da quantidade.
 - Uma venda finalizada reduzirá o estoque dentro da mesma transação.
