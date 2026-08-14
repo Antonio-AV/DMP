@@ -276,9 +276,10 @@ registrar um pagamento total ou parcial.
    **Pagamentos realizados** e **Total em aberto**.
 3. Seleciona a compra que está sendo paga. Cada compra aparece separadamente
    com data, total, vencimento, valor pago e saldo.
-4. Seleciona **Registrar recebimento** e informa **Valor recebido**.
-5. O sistema mostra o saldo anterior, o valor informado e o saldo após o
-   recebimento.
+4. Seleciona **Registrar recebimento**, informa **Valor recebido** e escolhe
+   uma **Forma de pagamento**: **Dinheiro**, **Pix**, **Débito** ou **Crédito**.
+5. O sistema mostra o saldo anterior, o valor informado, a forma de pagamento
+   e o saldo após o recebimento.
 6. O funcionário confirma em **Confirmar recebimento**.
 7. O sistema registra o recebimento associado à compra selecionada e atualiza
    a parcela, a dívida do cliente e o caixa diário.
@@ -294,7 +295,8 @@ registrar um pagamento total ou parcial.
 | Nenhuma compra selecionada | Validação | **Selecione a compra que está sendo paga.** |
 | Valor ausente ou zero | Validação | **Informe um valor recebido maior que zero.** |
 | Valor acima do saldo | Validação | **O valor recebido não pode ser maior que o saldo em aberto.** |
-| Resumo do recebimento | Confirmação | **Confirme o recebimento de [valor] para a compra de [data].** |
+| Forma de pagamento não escolhida | Validação | **Escolha uma forma de pagamento.** |
+| Resumo do recebimento | Confirmação | **Confirme o recebimento de [valor] em [forma] para a compra de [data].** |
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
@@ -402,19 +404,27 @@ com uma senha específica.
 ### Fluxo principal
 
 1. O funcionário acessa **Caixa diário** e escolhe a data atual.
-2. O sistema mostra separadamente **Vendas à vista**, **Vendas a prazo** e
-   **Recebimentos de clientes**.
-3. Em **Vendas à vista**, mostra o total por forma de pagamento: **Dinheiro**,
-   **Pix**, **Débito** e **Crédito**.
-4. O sistema mostra **Total esperado** e permite informar os valores físicos
-   contados: **Dinheiro contado**, **Pix conferido**, **Débito conferido** e
-   **Crédito conferido**, quando aplicável.
-5. O sistema calcula e mostra a **Diferença** entre o esperado e o contado.
+2. O sistema mostra quatro blocos separados:
+   - **Vendas à vista**: total das vendas recebidas no momento da compra,
+     detalhado por **Dinheiro**, **Pix**, **Débito** e **Crédito**.
+   - **Vendas a prazo**: total contratado no dia, sem somar esse valor ao
+     recebido enquanto não houver pagamento.
+   - **Recebimentos de débitos**: pagamentos de compras a prazo anteriores,
+     detalhados por forma de pagamento.
+   - **Total recebido no dia**: soma de vendas à vista e recebimentos de
+     débitos.
+3. O sistema mostra **Total esperado para conferência**, igual ao **Total
+   recebido no dia**. Vendas a prazo não pagas ficam fora desse total.
+4. O funcionário informa os valores físicos conferidos por forma de pagamento:
+   **Dinheiro contado**, **Pix conferido**, **Débito conferido** e **Crédito
+   conferido**, quando aplicável.
+5. O sistema calcula e mostra a **Diferença** entre o total esperado e o total
+   contado.
 6. O funcionário seleciona **Fechar caixa**.
 7. O sistema mostra o resumo da conferência e pede a **Senha de fechamento**.
 8. Com a senha correta, o funcionário confirma em **Confirmar fechamento**.
-9. A tela de sucesso mostra **Caixa fechado**, data, totais e diferença
-   registrada.
+9. A tela de sucesso mostra **Caixa fechado**, data, cada categoria e o total
+   recebido com a diferença registrada.
 
 ### Estados específicos
 
@@ -426,7 +436,7 @@ com uma senha específica.
 | Senha ausente | Validação | **Informe a senha de fechamento.** |
 | Senha incorreta | Erro | **Senha de fechamento incorreta. O caixa não foi fechado.** |
 | Caixa já fechado | Validação | **O caixa deste dia já está fechado.** |
-| Resumo antes do fechamento | Confirmação | **Confirme o fechamento do caixa de [data]. Diferença: [valor].** |
+| Resumo antes do fechamento | Confirmação | **Confirme o fechamento do caixa de [data]. Total recebido: [valor]. Diferença: [valor].** |
 | Falha no fechamento | Erro | **Não foi possível fechar o caixa. Tente novamente.** |
 | Fechamento concluído | Sucesso | **Caixa fechado com sucesso. Diferença registrada: [valor].** |
 

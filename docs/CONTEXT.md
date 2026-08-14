@@ -92,9 +92,11 @@ feedback before any production migration.
 ## Cash Rules
 
 - There is one daily cash record.
-- The daily summary separates immediate sales, credit sales, customer receipts,
-  and total received.
-- Immediate receipts are grouped by payment method.
+- The daily summary separates immediate sales, credit sales, debt receipts, and
+  total received.
+- Immediate sales and debt receipts are grouped by payment method.
+- Total received equals immediate sales receipts plus debt receipts; unpaid
+  credit sales are excluded until payment.
 - The employee can enter physical counted amounts at closing for comparison.
 - Closing the cash requires a separate password.
 - The MVP does not model opening balance, withdrawals, supplies, or expenses.
