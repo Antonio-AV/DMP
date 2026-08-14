@@ -73,7 +73,38 @@ principal ou alternativo de produtos e associado a entradas de estoque.
 | Falha no registro | Erro | **Não foi possível cadastrar o fornecedor. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Fornecedor cadastrado com sucesso.** |
 
-## Jornada 2: Cadastrar Produto
+## Jornada 2: Consultar Produtos Do Fornecedor
+
+### Objetivo
+
+Consultar os produtos relacionados a um fornecedor para apoiar o planejamento
+de reposição e distinguir os produtos em que ele é principal ou alternativo.
+
+### Fluxo principal
+
+1. O funcionário acessa **Fornecedores** e seleciona um fornecedor.
+2. Seleciona **Ver fornecedor**.
+3. O sistema mostra os dados do fornecedor e duas seções de produtos:
+   **Produtos principais** e **Produtos alternativos**.
+4. Cada produto mostra **Código**, **Descrição**, **Preço de venda** e
+   **Estoque atual**.
+5. O funcionário seleciona um produto para **Ver produto** ou usa **Voltar
+   para fornecedores** para retornar à lista.
+6. A tela oferece **Cadastrar produto** quando o funcionário precisar incluir um
+   novo produto relacionado a esse fornecedor.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Fornecedor sem produtos | Vazio | **Este fornecedor ainda não está relacionado a nenhum produto.** A tela oferece **Cadastrar produto**. |
+| Sem produtos principais | Vazio | **Este fornecedor não é o principal de nenhum produto.** |
+| Sem produtos alternativos | Vazio | **Este fornecedor não está cadastrado como alternativa de nenhum produto.** |
+| Produtos encontrados | Sucesso | Lista os produtos separados entre principais e alternativos, ordenados por descrição. |
+| Fornecedor não encontrado | Erro | **Não foi possível localizar o fornecedor. Volte para a lista e tente novamente.** |
+| Falha ao consultar produtos | Erro | **Não foi possível carregar os produtos deste fornecedor. Tente novamente.** |
+
+## Jornada 3: Cadastrar Produto
 
 ### Objetivo
 
@@ -165,7 +196,7 @@ As telas críticas usam os seguintes estados visíveis:
 | Confirmação | Resume o impacto da ação e oferece **Confirmar** e **Voltar e editar**. |
 | Sucesso | Confirma o registro e oferece a próxima ação relevante. |
 
-## Jornada 3: Cadastrar Cliente
+## Jornada 4: Cadastrar Cliente
 
 ### Objetivo
 
@@ -193,7 +224,7 @@ prazo, para que ele possa ser localizado e associado a compras futuras.
 | Falha no registro | Erro | **Não foi possível cadastrar o cliente. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Cliente cadastrado com sucesso.** Nenhuma venda ou dívida foi criada. |
 
-## Jornada 4: Venda À Vista
+## Jornada 5: Venda À Vista
 
 ### Objetivo
 
@@ -247,7 +278,7 @@ registrando um recebimento no caixa diário.
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
 | Registro concluído | Sucesso | **Venda concluída em [data e hora]. Estoque e caixa foram atualizados.** |
 
-## Jornada 5: Venda A Prazo
+## Jornada 6: Venda A Prazo
 
 ### Objetivo
 
@@ -301,7 +332,7 @@ criando uma dívida com uma ou mais parcelas.
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Venda a prazo concluída em [data e hora]. Dívida criada para [cliente].** |
 
-## Jornada 6: Consultar Vendas
+## Jornada 7: Consultar Vendas
 
 ### Objetivo
 
@@ -337,7 +368,7 @@ dia e hora em que foram finalizadas.
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
 
-## Jornada 7: Consultar Dívida E Registrar Pagamento
+## Jornada 8: Consultar Dívida E Registrar Pagamento
 
 ### Objetivo
 
@@ -375,7 +406,7 @@ registrar um pagamento total ou parcial.
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
-## Jornada 8: Entrada De Estoque
+## Jornada 9: Entrada De Estoque
 
 ### Objetivo
 
@@ -405,7 +436,7 @@ fornecedor opcional.
 | Falha no registro | Erro | **Não foi possível registrar a entrada. Tente novamente.** |
 | Registro concluído | Sucesso | **Entrada registrada. Novo estoque: [quantidade].** |
 
-## Jornada 9: Ajuste De Inventário
+## Jornada 10: Ajuste De Inventário
 
 ### Objetivo
 
@@ -435,7 +466,7 @@ mantendo o histórico da alteração.
 | Falha no registro | Erro | **Não foi possível registrar o ajuste. Tente novamente.** |
 | Registro concluído | Sucesso | **Ajuste registrado. Novo estoque: [quantidade].** |
 
-## Jornada 10: Cancelar Venda Não Paga
+## Jornada 11: Cancelar Venda Não Paga
 
 ### Objetivo
 
@@ -469,7 +500,7 @@ ao estoque e retirando a venda dos totais líquidos.
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
 | Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
 
-## Jornada 11: Fechar Caixa Diário
+## Jornada 12: Fechar Caixa Diário
 
 ### Objetivo
 
