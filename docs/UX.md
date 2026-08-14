@@ -22,7 +22,7 @@ perder dados persistidos ou o carrinho ativo.
 | **Fornecedores** | Consultar e cadastrar fornecedores e relacioná-los aos produtos. | **Cadastrar fornecedor** |
 | **Vendas** | Iniciar venda à vista ou a prazo e consultar vendas realizadas. | **Nova venda** |
 | **Estoque** | Registrar entradas, ajustes e consultar o histórico de movimentações. | **Registrar entrada** |
-| **Clientes** | Consultar clientes, compras a prazo, parcelas, saldo e recebimentos. | **Registrar recebimento** |
+| **Clientes** | Consultar clientes, compras a prazo, parcelas, saldo e recebimentos. | **Cadastrar cliente** ou **Registrar recebimento** |
 | **Caixa diário** | Consultar o movimento do dia e fechar o caixa. | **Fechar caixa** |
 
 ### Regras Do Shell
@@ -32,8 +32,12 @@ perder dados persistidos ou o carrinho ativo.
   de qualquer nova venda.
 - A área **Clientes** permite cadastrar clientes a qualquer momento, mesmo sem
   uma venda a prazo em execução.
+- Em **Clientes**, o funcionário pode iniciar **Cadastrar cliente** ou
+  **Registrar recebimento**. O cadastro independente não depende de uma venda
+  em andamento.
 - Ao escolher **Venda a prazo**, o funcionário deve selecionar **Cliente
-  cadastrado** ou **Criar cliente** antes de continuar.
+  cadastrado** ou **Criar cliente** antes de continuar. **Criar cliente** é um
+  atalho contextual para o mesmo cadastro de clientes.
 - A área **Caixa diário** mostra um único caixa por dia; abertura, sangria,
   suprimento e despesas não fazem parte do MVP.
 - A navegação não deve ocultar validações ou confirmações pendentes de uma
@@ -158,7 +162,35 @@ As telas críticas usam os seguintes estados visíveis:
 | Confirmação | Resume o impacto da ação e oferece **Confirmar** e **Voltar e editar**. |
 | Sucesso | Confirma o registro e oferece a próxima ação relevante. |
 
-## Jornada 3: Venda À Vista
+## Jornada 3: Cadastrar Cliente
+
+### Objetivo
+
+Cadastrar um cliente a qualquer momento, inclusive antes de iniciar uma venda a
+prazo, para que ele possa ser localizado e associado a compras futuras.
+
+### Fluxo principal
+
+1. O funcionário acessa **Clientes** e seleciona **Cadastrar cliente**.
+2. Informa o **Nome do cliente**. Pode informar também **Telefone** e
+   **Observação**.
+3. O sistema mostra um resumo dos dados preenchidos e pede confirmação em
+   **Confirmar cadastro**.
+4. O sistema salva o cliente, sem criar venda, dívida ou recebimento.
+5. A tela de sucesso mostra **Cliente cadastrado** e oferece as ações
+   **Cadastrar outro cliente**, **Ver cliente** e **Nova venda a prazo**.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Lista sem clientes | Vazio | **Nenhum cliente cadastrado. Cadastre o primeiro cliente para começar.** |
+| Nome ausente | Validação | **Informe o nome do cliente.** |
+| Resumo do cadastro | Confirmação | **Confirme o cadastro do cliente [nome].** |
+| Falha no registro | Erro | **Não foi possível cadastrar o cliente. Tente novamente.** Os dados preenchidos são preservados. |
+| Registro concluído | Sucesso | **Cliente cadastrado com sucesso.** Nenhuma venda ou dívida foi criada. |
+
+## Jornada 4: Venda À Vista
 
 ### Objetivo
 
@@ -208,7 +240,7 @@ registrando um recebimento no caixa diário.
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
 | Registro concluído | Sucesso | **Venda concluída em [data e hora]. Estoque e caixa foram atualizados.** |
 
-## Jornada 4: Venda A Prazo
+## Jornada 5: Venda A Prazo
 
 ### Objetivo
 
@@ -262,7 +294,7 @@ criando uma dívida com uma ou mais parcelas.
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Venda a prazo concluída em [data e hora]. Dívida criada para [cliente].** |
 
-## Jornada 5: Consultar Vendas
+## Jornada 6: Consultar Vendas
 
 ### Objetivo
 
@@ -294,7 +326,7 @@ período em que foram finalizadas.
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
 
-## Jornada 6: Consultar Dívida E Registrar Pagamento
+## Jornada 7: Consultar Dívida E Registrar Pagamento
 
 ### Objetivo
 
@@ -332,7 +364,7 @@ registrar um pagamento total ou parcial.
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
-## Jornada 7: Entrada De Estoque
+## Jornada 8: Entrada De Estoque
 
 ### Objetivo
 
@@ -362,7 +394,7 @@ fornecedor opcional.
 | Falha no registro | Erro | **Não foi possível registrar a entrada. Tente novamente.** |
 | Registro concluído | Sucesso | **Entrada registrada. Novo estoque: [quantidade].** |
 
-## Jornada 8: Ajuste De Inventário
+## Jornada 9: Ajuste De Inventário
 
 ### Objetivo
 
@@ -392,7 +424,7 @@ mantendo o histórico da alteração.
 | Falha no registro | Erro | **Não foi possível registrar o ajuste. Tente novamente.** |
 | Registro concluído | Sucesso | **Ajuste registrado. Novo estoque: [quantidade].** |
 
-## Jornada 9: Cancelar Venda Não Paga
+## Jornada 10: Cancelar Venda Não Paga
 
 ### Objetivo
 
@@ -426,7 +458,7 @@ ao estoque e retirando a venda dos totais líquidos.
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
 | Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
 
-## Jornada 10: Fechar Caixa Diário
+## Jornada 11: Fechar Caixa Diário
 
 ### Objetivo
 
