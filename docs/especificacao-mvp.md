@@ -171,7 +171,13 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Toda dívida terá vencimento. Vendas parceladas terão vencimento por parcela.
 - Toda parcela deverá ter um vencimento informado; a venda parcelada não poderá
   ser confirmada enquanto houver uma parcela sem vencimento.
-- Parcelas poderão ser calculadas automaticamente ou editadas manualmente.
+- Ao informar o número de parcelas, o sistema calculará automaticamente os
+  valores em centavos e os vencimentos mensais a partir da data da venda.
+- Os centavos restantes da divisão serão distribuídos entre as primeiras
+  parcelas para que a soma seja exatamente igual ao total.
+- O funcionário poderá editar o valor e o vencimento de cada parcela antes da
+  confirmação.
+- O número de parcelas não poderá ser maior que o total da venda em centavos.
 - Pagamentos parciais serão permitidos.
 - O pagamento será associado à compra a prazo selecionada pelo funcionário.
 - Uma venda à vista usará apenas uma forma de pagamento no MVP.

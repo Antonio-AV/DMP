@@ -60,7 +60,11 @@ feedback before any production migration.
 - Every credit debt has a due date. Installments have their own due dates.
 - A credit sale with installments cannot be completed until every installment
   has a due date.
-- Installments may be calculated automatically or edited manually.
+- Installment amounts and monthly due dates are calculated automatically from
+  the sale date; the employee may edit both before confirmation.
+- Remainder cents are distributed across the first installments so their sum
+  equals the sale total exactly.
+- The installment count cannot exceed the sale total in cents.
 - Payments may be partial and are applied to the selected credit purchase.
 
 ## Stock Rules
