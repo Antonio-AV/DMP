@@ -56,6 +56,8 @@ feedback before any production migration.
 - A credit sale requires a customer and creates one debt or multiple
   installments.
 - Every credit debt has a due date. Installments have their own due dates.
+- A credit sale with installments cannot be completed until every installment
+  has a due date.
 - Installments may be calculated automatically or edited manually.
 - Payments may be partial and are applied to the selected credit purchase.
 

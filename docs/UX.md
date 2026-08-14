@@ -200,10 +200,12 @@ criando uma dívida com uma ou mais parcelas.
    salvo e associado à venda.
 5. Na etapa **Condições da venda**, o funcionário escolhe entre **Uma dívida**
    e **Parcelar compra**.
-6. Para uma dívida única, informa **Vencimento**.
-7. Para uma compra parcelada, informa **Número de parcelas** e os vencimentos.
-   O sistema calcula os valores automaticamente e mostra **Valor da parcela**;
-   o funcionário pode editar os valores antes de continuar.
+6. Para uma dívida única, informa o **Vencimento da dívida**.
+7. Para uma compra parcelada, informa o **Número de parcelas** e o vencimento
+   de cada parcela. Cada parcela aparece identificada, por exemplo **Parcela 1
+   - Vencimento**, **Parcela 2 - Vencimento**. O sistema calcula os valores
+   automaticamente e mostra **Valor da parcela**; o funcionário pode editar os
+   valores antes de continuar.
 8. O sistema mostra **Cliente**, itens, **Total da venda**, vencimento ou
    parcelas e **Total em aberto**.
 9. O funcionário seleciona **Confirmar venda a prazo**.
@@ -223,7 +225,8 @@ criando uma dívida com uma ou mais parcelas.
 | Cliente não selecionado | Validação | **Selecione um cliente para registrar uma venda a prazo.** |
 | Nome ausente no cadastro | Validação | **Informe o nome do cliente.** |
 | Número de parcelas inválido | Validação | **Informe pelo menos uma parcela.** |
-| Vencimento ausente | Validação | **Informe o vencimento da dívida.** |
+| Vencimento da dívida ausente | Validação | **Informe o vencimento da dívida.** |
+| Vencimento de parcela ausente | Validação | **Informe o vencimento da parcela [n].** A venda não pode ser confirmada enquanto qualquer parcela estiver sem vencimento. |
 | Soma das parcelas diferente do total | Validação | **A soma das parcelas deve ser igual ao total da venda.** |
 | Valor de parcela inválido | Validação | **Cada parcela deve ter um valor maior que zero.** |
 | Venda sem estoque suficiente | Validação | Usa a mesma mensagem de estoque da venda à vista e não conclui a operação. |

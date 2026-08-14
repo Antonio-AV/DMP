@@ -161,6 +161,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Cada venda a prazo criará uma dívida associada a um cliente.
 - Uma venda a prazo poderá ter uma dívida única ou várias parcelas.
 - Toda dívida terá vencimento. Vendas parceladas terão vencimento por parcela.
+- Toda parcela deverá ter um vencimento informado; a venda parcelada não poderá
+  ser confirmada enquanto houver uma parcela sem vencimento.
 - Parcelas poderão ser calculadas automaticamente ou editadas manualmente.
 - Pagamentos parciais serão permitidos.
 - O pagamento será associado à compra a prazo selecionada pelo funcionário.
