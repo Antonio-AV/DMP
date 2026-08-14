@@ -167,9 +167,12 @@ A aplicação não dependerá de internet nem de servidor externo.
   diferença não criará movimentação.
 - Cada venda à vista criará um recebimento imediato.
 - Cada venda a prazo criará uma dívida associada a um cliente.
-- Uma venda a prazo iniciará com uma dívida única e uma parcela por padrão.
+- Uma venda a prazo iniciará com uma dívida única, um vencimento padrão e o
+  seletor de parcelas definido como `1`.
 - O funcionário poderá informar um número de parcelas maior ou igual a um;
   uma parcela mantém a dívida única e duas ou mais criam o parcelamento.
+- Quando o número for `1`, nenhuma entidade `Parcela` separada será persistida;
+  a dívida armazenará o valor total e seu vencimento.
 - Toda dívida terá vencimento. Vendas parceladas terão vencimento por parcela.
 - Toda parcela deverá ter um vencimento informado; a venda parcelada não poderá
   ser confirmada enquanto houver uma parcela sem vencimento.
@@ -182,7 +185,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O número de parcelas não poderá ser maior que o total da venda em centavos.
 - Pagamentos parciais serão permitidos.
 - O pagamento será associado à compra a prazo selecionada pelo funcionário.
-- Em uma compra com uma única parcela, o pagamento reduzirá diretamente o saldo
+- Em uma compra com dívida única, o pagamento reduzirá diretamente o saldo
   da dívida.
 - Em uma compra parcelada, o pagamento será aplicado primeiro à parcela mais
   antiga em aberto e seguirá para as próximas se houver valor excedente.

@@ -375,27 +375,32 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
    **Nome** e, opcionalmente, **Telefone** e **Observação**; o novo cliente é
    salvo e associado à venda.
 5. Na etapa **Condições da venda**, o sistema inicia o **Número de parcelas**
-   como `1`, com o valor total em uma única parcela e vencimento automático de
-   um mês após a data da venda.
+   como `1`. Isso representa uma dívida única, com o valor total e vencimento
+   automático de um mês após a data da venda; nenhuma parcela separada é
+   persistida nesse caso.
 6. O funcionário pode alterar o **Número de parcelas** para qualquer inteiro
    maior ou igual a `1`. Com `1`, a venda permanece como uma dívida única; com
    `2` ou mais, o sistema cria um parcelamento e recalcula os valores e
    vencimentos.
-7. O sistema calcula automaticamente o valor e o vencimento de cada parcela:
+7. Quando o número for `2` ou mais, o sistema calcula automaticamente o valor e
+   o vencimento de cada parcela:
    - O valor total é dividido em centavos entre as parcelas. Se sobrarem
      centavos, eles são distribuídos um a um entre as primeiras parcelas para
      que a soma permaneça exatamente igual ao total.
    - A **Parcela 1** vence um mês depois da data da venda, a **Parcela 2** dois
      meses depois, e assim por diante, mantendo o mesmo dia quando existir no
      mês. Quando o mês não tiver esse dia, usa o último dia do mês.
-   - Cada parcela aparece identificada com **Valor da parcela** e
-     **Vencimento**. O funcionário pode editar tanto os valores quanto as
-     datas antes de continuar.
-8. O sistema mostra **Cliente**, itens, **Total da venda**, vencimento ou
-   parcelas editadas e **Total em aberto**.
+    - Cada parcela aparece identificada com **Valor da parcela** e
+      **Vencimento**. O funcionário pode editar tanto os valores quanto as
+      datas antes de continuar.
+   Quando o número for `1`, o funcionário pode editar o vencimento da dívida,
+   mas o valor permanece igual ao total da venda.
+8. O sistema mostra **Cliente**, itens, vencimento da dívida ou parcelas
+   editadas e **Total em aberto**.
 9. O funcionário seleciona **Confirmar venda a prazo**.
 10. Após a confirmação, o sistema registra a venda, reduz o estoque e cria a
-    dívida e suas parcelas. Não é criado recebimento imediato.
+    dívida. Registra parcelas separadas somente quando o número escolhido for
+    `2` ou mais. Não é criado recebimento imediato.
 11. No momento da confirmação, o sistema registra a **Data e hora de
     finalização** da venda.
 12. A tela de sucesso mostra **Venda a prazo concluída**, o cliente, o total em
@@ -412,9 +417,9 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
 | Número de parcelas inválido | Validação | **Informe um número de parcelas maior ou igual a 1.** |
 | Número de parcelas maior que o total | Validação | **O número de parcelas não pode ser maior que o total disponível em centavos.** |
 | Vencimento ausente | Validação | **Informe o vencimento da dívida ou da parcela.** |
-| Vencimento de parcela ausente | Validação | **Informe o vencimento da parcela [n].** A venda não pode ser confirmada enquanto qualquer parcela estiver sem vencimento. |
-| Soma das parcelas diferente do total | Validação | **A soma das parcelas deve ser igual ao total da venda.** |
-| Valor de parcela inválido | Validação | **Cada parcela deve ter um valor maior que zero.** |
+| Vencimento de parcela ausente | Validação | **Informe o vencimento da parcela [n].** Essa validação se aplica apenas a vendas com 2 ou mais parcelas. |
+| Soma das parcelas diferente do total | Validação | **A soma das parcelas deve ser igual ao total da venda.** Essa validação se aplica ao parcelamento com 2 ou mais parcelas. |
+| Valor de parcela inválido | Validação | **Cada parcela deve ter um valor maior que zero.** Essa validação se aplica ao parcelamento com 2 ou mais parcelas. |
 | Venda sem estoque suficiente | Validação | Usa a mesma mensagem de estoque da venda à vista e não conclui a operação. |
 | Resumo de cliente e condições | Confirmação | **Confirme a venda a prazo de [total] para [cliente].** |
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
@@ -476,8 +481,9 @@ registrar um pagamento total ou parcial.
 5. O sistema mostra o saldo anterior, o valor informado, a forma de pagamento
    e o saldo após o recebimento.
 6. O funcionário confirma em **Confirmar recebimento**.
-7. Se a compra tiver uma única parcela, o sistema abate o valor diretamente do
-   saldo da dívida. Nenhuma parcela separada é atualizada nesse caso.
+7. Se a compra estiver no fluxo de dívida única, o sistema abate o valor
+   diretamente do saldo da dívida. Nenhuma parcela separada é atualizada nesse
+   caso.
 8. Se a compra tiver várias parcelas, o sistema abate o recebimento primeiro da
    parcela mais antiga em aberto. Se houver valor excedente, continua pelas
    próximas parcelas em ordem de vencimento.

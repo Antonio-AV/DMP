@@ -59,6 +59,8 @@ feedback before any production migration.
 - A credit sale requires a customer and starts with one debt by default.
 - The employee may change the installment count to one or more; one keeps the
   single-debt flow, while two or more create installments.
+- A single-debt sale stores no separate installment record; the debt stores the
+  total value and its due date.
 - Every credit debt has a due date. Installments have their own due dates.
 - A credit sale with installments cannot be completed until every installment
   has a due date.
