@@ -169,7 +169,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O cancelamento manterá a venda no histórico e criará o movimento de estorno do estoque.
 - O MVP permitirá cancelar somente vendas ainda não pagas.
 - Um fornecedor poderá fornecer vários produtos.
-- Cada produto terá um fornecedor principal e poderá ter fornecedores alternativos.
+- O cadastro de produto exigirá um fornecedor principal; fornecedores alternativos serão opcionais.
 - A relação entre produto e fornecedor será persistida separadamente para suportar essa cardinalidade.
 - Fornecedores referenciados por históricos não serão apagados fisicamente; serão arquivados.
 - Uma entrada manual de estoque poderá identificar o fornecedor.

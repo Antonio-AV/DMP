@@ -69,7 +69,7 @@ feedback before any production migration.
 ## Supplier Rules
 
 - A supplier can provide many products.
-- A product has one primary supplier and may have alternative suppliers.
+- A product must have one primary supplier and may have alternative suppliers.
 - Suppliers may be archived instead of physically deleted when historical
   records refer to them.
 - Supplier registration and product relationships are part of the MVP.
