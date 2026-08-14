@@ -687,7 +687,7 @@ com uma senha específica.
    no primeiro acesso do dia, antes de qualquer operação.
 2. O funcionário acessa **Caixa diário** e escolhe a data atual. O sistema
    carrega todas as transações financeiras registradas para esse dia, mesmo que
-   o caixa ainda não tenha sido aberto na interface.
+   a tela do caixa ainda não tenha sido acessada.
 3. O sistema mostra quatro blocos separados:
    - **Vendas à vista**: total das vendas recebidas no momento da compra,
      detalhado por **Dinheiro**, **Pix**, **Débito** e **Crédito**.
