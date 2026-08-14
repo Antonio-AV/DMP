@@ -202,7 +202,42 @@ As telas críticas usam os seguintes estados visíveis:
 | Confirmação | Resume o impacto da ação e oferece **Confirmar** e **Voltar e editar**. |
 | Sucesso | Confirma o registro e oferece a próxima ação relevante. |
 
-## Jornada 4: Consultar Histórico De Movimentações
+## Jornada 4: Consultar Produto
+
+### Objetivo
+
+Consultar os dados completos de um produto e acessar suas operações de estoque
+sem misturar a tela de consulta com uma tela de edição.
+
+### Entradas da tela
+
+- Em **Produtos**, o funcionário seleciona um produto e escolhe **Ver produto**.
+- Em **Fornecedores**, o funcionário seleciona um produto na tela **Ver
+  fornecedor** e escolhe **Ver produto**.
+- Após cadastrar um produto, o funcionário escolhe **Ver produto** na tela de
+  sucesso.
+
+### Fluxo principal
+
+1. O sistema mostra o cabeçalho com **Descrição** e **Código** do produto.
+2. Mostra **Preço de venda**, **Estoque atual**, **Fornecedor principal** e
+   **Fornecedores alternativos**.
+3. O funcionário pode selecionar **Ver histórico de movimentações** para
+   consultar as alterações de estoque desse produto.
+4. O funcionário pode selecionar **Registrar entrada** para adicionar unidades
+   ao estoque.
+5. O funcionário seleciona **Voltar para produtos** ou retorna para
+   **Fornecedores** quando veio da tela de um fornecedor.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Produto encontrado | Sucesso | Mostra todos os dados do produto e as ações disponíveis. Estoque zero é exibido normalmente. |
+| Produto não encontrado | Vazio | **Produto não encontrado. Volte para a lista e selecione outro produto.** |
+| Falha ao carregar produto | Erro | **Não foi possível carregar os dados do produto. Tente novamente.** |
+
+## Jornada 5: Consultar Histórico De Movimentações
 
 ### Objetivo
 
@@ -238,7 +273,7 @@ movimentos ou apenas os movimentos de um produto.
 | Detalhe do movimento | Sucesso | Mostra todos os dados do movimento selecionado e permite voltar à lista. |
 | Falha ao consultar histórico | Erro | **Não foi possível carregar o histórico de estoque. Tente novamente.** |
 
-## Jornada 5: Cadastrar Cliente
+## Jornada 6: Cadastrar Cliente
 
 ### Objetivo
 
@@ -266,7 +301,7 @@ prazo, para que ele possa ser localizado e associado a compras futuras.
 | Falha no registro | Erro | **Não foi possível cadastrar o cliente. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Cliente cadastrado com sucesso.** Nenhuma venda ou dívida foi criada. |
 
-## Jornada 6: Venda À Vista
+## Jornada 7: Venda À Vista
 
 ### Objetivo
 
@@ -320,7 +355,7 @@ registrando um recebimento no caixa diário.
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
 | Registro concluído | Sucesso | **Venda concluída em [data e hora]. Estoque e caixa foram atualizados.** |
 
-## Jornada 7: Venda A Prazo
+## Jornada 8: Venda A Prazo
 
 ### Objetivo
 
@@ -384,7 +419,7 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |
 | Registro concluído | Sucesso | **Venda a prazo concluída em [data e hora]. Dívida criada para [cliente].** |
 
-## Jornada 8: Consultar Vendas
+## Jornada 9: Consultar Vendas
 
 ### Objetivo
 
@@ -420,7 +455,7 @@ dia e hora em que foram finalizadas.
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
 
-## Jornada 9: Consultar Dívida E Registrar Pagamento
+## Jornada 10: Consultar Dívida E Registrar Pagamento
 
 ### Objetivo
 
@@ -458,7 +493,7 @@ registrar um pagamento total ou parcial.
 | Falha no registro | Erro | **Não foi possível registrar o recebimento. Tente novamente.** |
 | Pagamento registrado | Sucesso | **Recebimento registrado. Novo saldo em aberto: [valor].** |
 
-## Jornada 10: Entrada De Estoque
+## Jornada 11: Entrada De Estoque
 
 ### Objetivo
 
@@ -488,7 +523,7 @@ fornecedor opcional.
 | Falha no registro | Erro | **Não foi possível registrar a entrada. Tente novamente.** |
 | Registro concluído | Sucesso | **Entrada registrada. Novo estoque: [quantidade].** |
 
-## Jornada 11: Ajuste De Inventário
+## Jornada 12: Ajuste De Inventário
 
 ### Objetivo
 
@@ -518,7 +553,7 @@ mantendo o histórico da alteração.
 | Falha no registro | Erro | **Não foi possível registrar o ajuste. Tente novamente.** |
 | Registro concluído | Sucesso | **Ajuste registrado. Novo estoque: [quantidade].** |
 
-## Jornada 12: Cancelar Venda Não Paga
+## Jornada 13: Cancelar Venda Não Paga
 
 ### Objetivo
 
@@ -552,7 +587,7 @@ ao estoque e retirando a venda dos totais líquidos.
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
 | Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado e o histórico foi mantido.** |
 
-## Jornada 13: Fechar Caixa Diário
+## Jornada 14: Fechar Caixa Diário
 
 ### Objetivo
 
