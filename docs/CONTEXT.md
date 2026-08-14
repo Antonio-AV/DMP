@@ -107,6 +107,8 @@ feedback before any production migration.
 ## Cash Rules
 
 - There is one daily cash record.
+- The daily cash record is created automatically on the first access for the
+  day, with zero totals and no opening step or opening balance.
 - The daily summary separates immediate sales, credit sales, debt receipts, and
   total received.
 - Immediate sales and debt receipts are grouped by payment method.

@@ -115,7 +115,7 @@ A aplicação não dependerá de internet nem de servidor externo.
 
 41. Como funcionário, quero associar uma entrada de estoque a um fornecedor, para que o histórico de reposição seja rastreável.
 
-42. Como funcionário, quero abrir o caixa diário, para que as operações do dia sejam agrupadas.
+42. Como funcionário, quero acessar o caixa diário, para que as operações do dia sejam agrupadas automaticamente.
 
 43. Como funcionário, quero visualizar vendas à vista, vendas a prazo e recebimentos separadamente, para que entenda o movimento do dia.
 
@@ -197,6 +197,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O cadastro de fornecedores e suas relações com produtos fará parte do MVP.
 - Pedidos de compra, cotações e relatórios avançados de fornecedores ficarão fora do MVP.
 - Haverá um caixa por dia.
+- O registro do caixa diário será criado automaticamente no primeiro acesso do
+  dia, com totais zerados e sem etapa de abertura.
 - O caixa separará vendas à vista, vendas a prazo e recebimentos de débitos.
 - O total recebido será a soma das vendas à vista e dos recebimentos de débitos;
   vendas a prazo não pagas não entrarão nesse total.

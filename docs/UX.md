@@ -38,8 +38,9 @@ perder dados persistidos ou o carrinho ativo.
 - Ao escolher **Venda a prazo**, o funcionário deve selecionar **Cliente
   cadastrado** ou **Criar cliente** antes de continuar. **Criar cliente** é um
   atalho contextual para o mesmo cadastro de clientes.
-- A área **Caixa diário** mostra um único caixa por dia; abertura, sangria,
-  suprimento e despesas não fazem parte do MVP.
+- A área **Caixa diário** mostra um único caixa por dia. No primeiro acesso do
+  dia, o sistema cria o registro automaticamente com totais zerados; abertura,
+  saldo inicial, sangria, suprimento e despesas não fazem parte do MVP.
 - A navegação não deve ocultar validações ou confirmações pendentes de uma
   operação em andamento.
 - Todas as telas devem usar textos em português e valores monetários no formato
@@ -598,7 +599,9 @@ com uma senha específica.
 ### Fluxo principal
 
 1. O funcionário acessa **Caixa diário** e escolhe a data atual.
-2. O sistema mostra quatro blocos separados:
+2. Se ainda não existir um registro para a data, o sistema cria o **Caixa
+   diário** automaticamente, sem solicitar valor ou senha de abertura.
+3. O sistema mostra quatro blocos separados:
    - **Vendas à vista**: total das vendas recebidas no momento da compra,
      detalhado por **Dinheiro**, **Pix**, **Débito** e **Crédito**.
    - **Vendas a prazo**: total contratado no dia, sem somar esse valor ao
@@ -607,26 +610,27 @@ com uma senha específica.
      detalhados por forma de pagamento.
    - **Total recebido no dia**: soma de vendas à vista e recebimentos de
      débitos.
-3. O sistema mostra **Total esperado para conferência**, igual ao **Total
+4. O sistema mostra **Total esperado para conferência**, igual ao **Total
    recebido no dia**. Vendas a prazo não pagas ficam fora desse total.
-4. O funcionário informa os valores físicos conferidos por forma de pagamento:
+5. O funcionário informa os valores físicos conferidos por forma de pagamento:
    **Dinheiro contado**, **Pix conferido**, **Débito conferido** e **Crédito
    conferido**, quando aplicável.
-5. O sistema calcula e mostra a **Diferença**, usando a fórmula **Total
+6. O sistema calcula e mostra a **Diferença**, usando a fórmula **Total
    contado - Total esperado**.
    - Resultado negativo indica **Falta**.
    - Resultado positivo indica **Sobra**.
    - Resultado zero indica **Caixa conferido sem diferença**.
-6. O funcionário seleciona **Fechar caixa**.
-7. O sistema mostra o resumo da conferência e pede a **Senha de fechamento**.
-8. Com a senha correta, o funcionário confirma em **Confirmar fechamento**.
-9. A tela de sucesso mostra **Caixa fechado**, data, cada categoria e o total
+7. O funcionário seleciona **Fechar caixa**.
+8. O sistema mostra o resumo da conferência e pede a **Senha de fechamento**.
+9. Com a senha correta, o funcionário confirma em **Confirmar fechamento**.
+10. A tela de sucesso mostra **Caixa fechado**, data, cada categoria e o total
    recebido com a diferença registrada.
 
 ### Estados específicos
 
 | Momento | Estado | Texto ou comportamento |
 | --- | --- | --- |
+| Caixa criado automaticamente | Sucesso | **Caixa diário criado automaticamente.** O acompanhamento do dia está disponível. |
 | Dia sem movimento | Vazio | **Não há movimentações registradas neste dia.** O fechamento continua disponível. |
 | Contagem ausente | Validação | **Informe os valores contados antes de fechar o caixa.** |
 | Valor contado inválido | Validação | **Informe um valor igual ou maior que zero.** |
