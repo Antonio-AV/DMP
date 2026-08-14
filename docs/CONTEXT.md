@@ -41,6 +41,10 @@ feedback before any production migration.
 
 ## Sale Rules
 
+- The application requires the shared general password before exposing any
+  module or business data.
+- All employees use the same general password in the MVP; there are no
+  individual users or differentiated permissions.
 - A sale starts as `open`, becomes `completed`, or becomes `cancelled`.
 - A completed sale stores the local date and time when confirmation finished.
 - The completion timestamp remains part of the sale history after cancellation.

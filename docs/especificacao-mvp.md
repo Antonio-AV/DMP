@@ -143,6 +143,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O MVP será um monólito modular, sem API remota ou backend separado.
 - O estado da sessão do Streamlit será usado apenas para estado transitório, como o carrinho ativo.
 - O estado persistido do negócio pertencerá ao SQLite.
+- O acesso à aplicação exigirá a senha geral correta antes de exibir o shell ou
+  qualquer módulo do sistema.
 - Valores monetários serão armazenados em centavos inteiros.
 - Preços, valores de parcelas e pagamentos informados devem ser maiores que zero;
   valores negativos não são permitidos.
@@ -237,6 +239,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Os testes validarão comportamento observável, não detalhes internos.
 - A finalização de uma venda à vista deverá verificar venda, recebimento, estoque e caixa.
 - A finalização de uma venda a prazo deverá verificar cliente, dívida, parcelas e estoque.
+- O acesso com senha correta deverá liberar o shell; senha ausente ou incorreta
+  não deverá exibir módulos nem dados do sistema.
 - O pagamento parcial deverá atualizar recebimentos e saldo restante.
 - O estoque deverá bloquear vendas acima da quantidade disponível.
 - A finalização deverá revalidar o estoque depois de alterações no carrinho.

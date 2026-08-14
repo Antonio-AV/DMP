@@ -10,11 +10,39 @@ O MVP será usado por funcionários da papelaria em um único computador. A
 interface deve privilegiar operações rápidas, confirmação explícita de ações
 irreversíveis e mensagens que expliquem como corrigir um problema.
 
+## Jornada 0: Acessar O Sistema
+
+### Objetivo
+
+Permitir o acesso à aplicação somente para funcionários que informem a senha
+geral correta, sem criar usuários ou permissões individuais.
+
+### Fluxo principal
+
+1. O funcionário abre a aplicação e vê a tela **Acessar DMP** antes do shell ou
+   de qualquer módulo.
+2. Informa a **Senha geral** e seleciona **Entrar**.
+3. Com a senha correta, o sistema autentica a sessão e mostra o shell com os
+   seis módulos principais.
+4. Com a senha incorreta, o sistema mantém a tela de acesso e não exibe dados ou
+   ações da aplicação.
+5. Ao sair da aplicação, a sessão autenticada é encerrada e uma nova entrada
+   exige a senha geral novamente.
+
+### Estados específicos
+
+| Momento | Estado | Texto ou comportamento |
+| --- | --- | --- |
+| Tela inicial | Entrada | Mostra o campo **Senha geral** e a ação **Entrar**. Nenhum módulo fica disponível antes da autenticação. |
+| Senha ausente | Validação | **Informe a senha geral para acessar o DMP.** |
+| Senha incorreta | Erro | **Senha geral incorreta. Acesso não autorizado.** O campo pode ser preenchido novamente. |
+| Acesso autorizado | Sucesso | **Acesso autorizado.** O sistema mostra o shell e os módulos disponíveis. |
+
 ## Estrutura De Navegação
 
-O shell da aplicação terá um cabeçalho com o nome **DMP**, a data do caixa
-atual e a navegação principal. Cada item abre uma área independente, sem
-perder dados persistidos ou o carrinho ativo.
+Após a autenticação, o shell da aplicação terá um cabeçalho com o nome **DMP**,
+a data do caixa atual e a navegação principal. Cada item abre uma área
+independente, sem perder dados persistidos ou o carrinho ativo.
 
 | Item da navegação | Objetivo | Ação principal |
 | --- | --- | --- |
@@ -27,6 +55,10 @@ perder dados persistidos ou o carrinho ativo.
 
 ### Regras Do Shell
 
+- A tela de acesso por **Senha geral** é obrigatória e aparece antes de qualquer
+  módulo ou dado do sistema.
+- Todos os funcionários usam a mesma senha geral no MVP; não há usuários,
+  perfis ou permissões individuais.
 - **Vendas** é a entrada para escolher **Venda à vista** ou **Venda a prazo**.
 - A busca de produtos aceita **Código ou descrição** e deve aparecer no fluxo
   de qualquer nova venda.
