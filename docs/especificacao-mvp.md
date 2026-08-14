@@ -167,9 +167,9 @@ A aplicação não dependerá de internet nem de servidor externo.
   diferença não criará movimentação.
 - Cada venda à vista criará um recebimento imediato.
 - Cada venda a prazo criará uma dívida associada a um cliente.
-- Uma venda a prazo poderá ter uma dívida única ou duas ou mais parcelas.
-- A opção **Parcelar compra** exigirá pelo menos duas parcelas; um único
-  vencimento deverá usar a opção de dívida única.
+- Uma venda a prazo iniciará com uma dívida única e uma parcela por padrão.
+- O funcionário poderá informar um número de parcelas maior ou igual a um;
+  uma parcela mantém a dívida única e duas ou mais criam o parcelamento.
 - Toda dívida terá vencimento. Vendas parceladas terão vencimento por parcela.
 - Toda parcela deverá ter um vencimento informado; a venda parcelada não poderá
   ser confirmada enquanto houver uma parcela sem vencimento.

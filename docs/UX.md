@@ -338,11 +338,14 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
    seleciona um cliente existente. Ao escolher **Criar cliente**, informa
    **Nome** e, opcionalmente, **Telefone** e **Observação**; o novo cliente é
    salvo e associado à venda.
-5. Na etapa **Condições da venda**, o funcionário escolhe entre **Uma dívida**
-   e **Parcelar compra**.
-6. Para uma dívida única, informa o **Vencimento da dívida**.
-7. Para uma compra parcelada, informa o **Número de parcelas**. O sistema
-   calcula automaticamente o valor e o vencimento de cada parcela:
+5. Na etapa **Condições da venda**, o sistema inicia o **Número de parcelas**
+   como `1`, com o valor total em uma única parcela e vencimento automático de
+   um mês após a data da venda.
+6. O funcionário pode alterar o **Número de parcelas** para qualquer inteiro
+   maior ou igual a `1`. Com `1`, a venda permanece como uma dívida única; com
+   `2` ou mais, o sistema cria um parcelamento e recalcula os valores e
+   vencimentos.
+7. O sistema calcula automaticamente o valor e o vencimento de cada parcela:
    - O valor total é dividido em centavos entre as parcelas. Se sobrarem
      centavos, eles são distribuídos um a um entre as primeiras parcelas para
      que a soma permaneça exatamente igual ao total.
@@ -370,9 +373,9 @@ criando uma dívida única ou um parcelamento com duas ou mais parcelas.
 | Cliente cadastrado sem resultados | Vazio | **Cliente não encontrado. Escolha Criar cliente ou tente outra busca.** |
 | Cliente não selecionado | Validação | **Selecione um cliente para registrar uma venda a prazo.** |
 | Nome ausente no cadastro | Validação | **Informe o nome do cliente.** |
-| Número de parcelas inválido | Validação | **Informe pelo menos 2 parcelas. Para um único vencimento, escolha Uma dívida.** |
+| Número de parcelas inválido | Validação | **Informe um número de parcelas maior ou igual a 1.** |
 | Número de parcelas maior que o total | Validação | **O número de parcelas não pode ser maior que o total disponível em centavos.** |
-| Vencimento da dívida ausente | Validação | **Informe o vencimento da dívida.** |
+| Vencimento ausente | Validação | **Informe o vencimento da dívida ou da parcela.** |
 | Vencimento de parcela ausente | Validação | **Informe o vencimento da parcela [n].** A venda não pode ser confirmada enquanto qualquer parcela estiver sem vencimento. |
 | Soma das parcelas diferente do total | Validação | **A soma das parcelas deve ser igual ao total da venda.** |
 | Valor de parcela inválido | Validação | **Cada parcela deve ter um valor maior que zero.** |
