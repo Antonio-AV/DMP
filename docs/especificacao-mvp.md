@@ -152,8 +152,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Uma venda finalizada armazenará a data e hora local em que foi confirmada.
 - A data e hora de finalização permanecerá no histórico mesmo se a venda for cancelada depois.
 - A pesquisa de vendas poderá usar o número da venda ou uma data e hora
-  selecionadas; a hora selecionada buscará do minuto `00` até antes da hora
-  seguinte no mesmo dia.
+  selecionadas; a hora selecionada buscará os minutos `00` a `59`, com todos os
+  segundos, no mesmo dia.
 - Cada item guardará o preço praticado no momento da venda.
 - Produtos repetidos serão agrupados pela soma da quantidade.
 - Antes de finalizar uma venda, o sistema revalidará o estoque de todos os itens

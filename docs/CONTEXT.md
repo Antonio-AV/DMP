@@ -45,7 +45,8 @@ feedback before any production migration.
 - A completed sale stores the local date and time when confirmation finished.
 - The completion timestamp remains part of the sale history after cancellation.
 - Sale searches may use the sale number or a selected local date and hour; the
-  selected hour matches from `HH:00:00` up to, but not including, the next hour.
+  selected hour includes minutes `HH:00` through `HH:59` and all seconds in
+  that range on the selected date, including the final hour `23:00`-`23:59`.
 - Products can be found by code or description.
 - Adding the same product more than once sums its quantity.
 - The current product price is copied to the sale item when added.

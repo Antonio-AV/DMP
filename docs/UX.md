@@ -433,7 +433,8 @@ dia e hora em que foram finalizadas.
 3. Se escolher **Número da venda**, informa o número da venda.
 4. Se escolher **Data e hora**, seleciona a **Data da venda** e uma **Hora da
    venda**. A hora representa o intervalo completo daquela hora: por exemplo,
-   `15:00` busca vendas finalizadas de `15:00:00` até antes de `16:00:00`.
+   `15:00` busca vendas finalizadas do minuto `15:00` até o minuto `15:59`,
+   incluindo todos os segundos desse intervalo (`15:00:00` a `15:59:59`).
 5. Seleciona **Pesquisar**.
 6. O sistema lista as vendas encontradas com **Número**, **Data e hora de
    finalização**, **Tipo**, **Total**, **Cliente** quando houver e **Status**.
@@ -450,7 +451,7 @@ dia e hora em que foram finalizadas.
 | Número ausente | Validação | **Informe o número da venda.** |
 | Data ausente | Validação | **Selecione a data da venda.** |
 | Hora ausente | Validação | **Selecione a hora da venda.** |
-| Hora selecionada | Sucesso | Busca todas as vendas finalizadas dentro da hora escolhida, das `HH:00:00` até antes da próxima hora. |
+| Hora selecionada | Sucesso | Busca todas as vendas finalizadas do minuto `HH:00` ao minuto `HH:59`, incluindo todos os segundos. Para `23:00`, o intervalo termina em `23:59:59` do mesmo dia. |
 | Nenhuma venda encontrada | Vazio | **Nenhuma venda encontrada para os filtros informados.** |
 | Resultados encontrados | Sucesso | Lista as vendas ordenadas da mais recente para a mais antiga. |
 | Falha na consulta | Erro | **Não foi possível consultar as vendas. Tente novamente.** |
