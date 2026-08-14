@@ -71,6 +71,8 @@ feedback before any production migration.
 - Entries and inventory adjustments are recorded as stock movements.
 - Every stock movement remains available for audit and explanation.
 - A stock entry may identify its supplier.
+- The initial product stock movement may have quantity zero; all other stock
+  movements require a positive quantity.
 
 ## Supplier Rules
 

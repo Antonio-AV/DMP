@@ -158,7 +158,10 @@ A aplicação não dependerá de internet nem de servidor externo.
 - Uma venda finalizada reduzirá o estoque dentro da mesma transação.
 - O sistema bloqueará vendas que resultem em estoque negativo.
 - O cadastro de produto permitirá informar um estoque inicial inteiro maior ou igual a zero.
-- O estoque inicial será registrado como uma entrada no histórico de movimentações.
+- O estoque inicial será registrado como uma entrada no histórico de movimentações,
+  inclusive quando for zero.
+- As demais movimentações de estoque exigirão quantidade positiva; ajuste sem
+  diferença não criará movimentação.
 - Cada venda à vista criará um recebimento imediato.
 - Cada venda a prazo criará uma dívida associada a um cliente.
 - Uma venda a prazo poderá ter uma dívida única ou várias parcelas.

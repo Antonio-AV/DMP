@@ -93,8 +93,8 @@ jornada de **Entrada de estoque**.
    **Estoque inicial: [quantidade] unidade(s)**.
 5. O funcionário seleciona **Confirmar cadastro**.
 6. O sistema cria o produto com o estoque inicial informado, salva as relações
-   com os fornecedores selecionados e registra a entrada inicial no histórico
-   de estoque.
+   com os fornecedores selecionados e registra a **Entrada inicial** no
+   histórico de estoque, inclusive quando a quantidade for `0`.
 7. A tela de sucesso mostra **Produto cadastrado** e oferece as ações
    **Cadastrar outro produto** e **Ver produto**. A ação **Registrar entrada**
    fica disponível para adicionar unidades depois do cadastro.
@@ -140,8 +140,11 @@ jornada de **Entrada de estoque**.
 - Preços, valores de parcelas e pagamentos informados pelo funcionário devem
   ser maiores que zero. Valores negativos ou com sinal de menos são rejeitados
   antes da confirmação.
-- Quantidades adicionadas a vendas ou movimentações de estoque devem ser
-  maiores que zero. Estoque inicial e contagem física podem ser zero.
+- Quantidades adicionadas a vendas e a movimentações de estoque devem ser
+  maiores que zero. A única movimentação que aceita quantidade `0` é a
+  **Entrada inicial** do produto; entradas posteriores, vendas, cancelamentos e
+  ajustes exigem quantidade positiva. Estoque inicial e contagem física podem
+  ser zero.
 - Subtotais, saldos e diferenças são valores calculados; podem resultar em
   zero e uma diferença de ajuste pode ser negativa sem permitir entrada
   negativa pelo funcionário.
