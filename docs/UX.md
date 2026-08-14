@@ -678,9 +678,9 @@ for uma venda a prazo sem pagamentos.
 | Venda paga | Validação | **Vendas com recebimento não podem ser canceladas no MVP.** |
 | Venda a prazo com pagamento | Validação | **Vendas a prazo com pagamento não podem ser canceladas no MVP.** O estorno ou crédito ainda não faz parte do fluxo. |
 | Venda aberta | Validação | **Finalize ou descarte a venda antes de consultar o cancelamento.** |
-| Antes do cancelamento | Confirmação | **Esta ação restaurará [quantidade] unidade(s), removerá [valor] dos totais líquidos e cancelará a dívida, quando houver.** |
+| Antes do cancelamento | Confirmação | **Esta ação restaurará [quantidade] unidade(s), removerá [valor] dos totais líquidos e cancelará a dívida ou suas parcelas, quando houver.** |
 | Falha no cancelamento | Erro | **Não foi possível cancelar a venda. Nenhuma alteração foi aplicada.** |
-| Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado, o histórico foi mantido e a dívida foi cancelada, quando aplicável.** |
+| Cancelamento concluído | Sucesso | **Venda cancelada. O estoque foi restaurado, o histórico foi mantido e a dívida ou suas parcelas foram canceladas, quando aplicável.** |
 
 ## Jornada 16: Fechar Caixa Diário
 
