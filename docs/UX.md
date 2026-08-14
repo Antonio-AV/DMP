@@ -75,7 +75,7 @@ jornada de **Entrada de estoque**.
 | Código ausente | Validação | **Informe o código do produto.** |
 | Código já cadastrado | Validação | **Já existe um produto com este código. Informe outro código.** |
 | Descrição ausente | Validação | **Informe a descrição do produto.** |
-| Preço ausente ou inválido | Validação | **Informe um preço de venda maior ou igual a zero.** |
+| Preço ausente ou inválido | Validação | **Informe um preço de venda maior que zero.** |
 | Estoque inicial ausente ou inválido | Validação | **Informe uma quantidade inteira de estoque maior ou igual a zero.** |
 | Fornecedor principal não selecionado | Validação | **Selecione um fornecedor principal para cadastrar o produto.** |
 | Fornecedor não encontrado | Validação | **Selecione um fornecedor cadastrado ou cadastre um novo fornecedor.** |
@@ -105,6 +105,14 @@ jornada de **Entrada de estoque**.
   detalhes técnicos.
 - Ações que alteram estoque, dívida ou caixa exigem uma confirmação antes do
   registro definitivo.
+- Preços, valores de parcelas e pagamentos informados pelo funcionário devem
+  ser maiores que zero. Valores negativos ou com sinal de menos são rejeitados
+  antes da confirmação.
+- Quantidades adicionadas a vendas ou movimentações de estoque devem ser
+  maiores que zero. Estoque inicial e contagem física podem ser zero.
+- Subtotais, saldos e diferenças são valores calculados; podem resultar em
+  zero e uma diferença de ajuste pode ser negativa sem permitir entrada
+  negativa pelo funcionário.
 - Uma mensagem de sucesso deve identificar o resultado da operação, por
   exemplo o número da venda, o novo saldo ou a diferença do caixa.
 - Campos obrigatórios devem ser marcados e validados no contexto da ação que
@@ -167,6 +175,7 @@ registrando um recebimento no caixa diário.
 | Produto sem preço | Validação | **Este produto não tem preço cadastrado. Atualize o cadastro antes de vender.** |
 | Carrinho sem itens ao avançar | Validação | **Adicione pelo menos um produto para continuar.** |
 | Forma não escolhida | Validação | **Escolha uma forma de pagamento.** |
+| Preço praticado inválido | Validação | **Informe um preço praticado maior que zero.** Valores negativos não são permitidos. |
 | Resumo antes do registro | Confirmação | **Confirme a venda de [total] em [forma de pagamento].** |
 | Falha no registro | Erro | **Não foi possível concluir a venda. Tente novamente.** O carrinho permanece disponível. |
 | Registro concluído | Sucesso | **Venda concluída em [data e hora]. Estoque e caixa foram atualizados.** |
@@ -216,6 +225,7 @@ criando uma dívida com uma ou mais parcelas.
 | Número de parcelas inválido | Validação | **Informe pelo menos uma parcela.** |
 | Vencimento ausente | Validação | **Informe o vencimento da dívida.** |
 | Soma das parcelas diferente do total | Validação | **A soma das parcelas deve ser igual ao total da venda.** |
+| Valor de parcela inválido | Validação | **Cada parcela deve ter um valor maior que zero.** |
 | Venda sem estoque suficiente | Validação | Usa a mesma mensagem de estoque da venda à vista e não conclui a operação. |
 | Resumo de cliente e condições | Confirmação | **Confirme a venda a prazo de [total] para [cliente].** |
 | Falha no registro | Erro | **Não foi possível registrar a venda a prazo. Tente novamente.** Os dados preenchidos são preservados. |

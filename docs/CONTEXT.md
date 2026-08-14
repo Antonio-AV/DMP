@@ -48,6 +48,8 @@ feedback before any production migration.
 - Adding the same product more than once sums its quantity.
 - The current product price is copied to the sale item when added.
 - An employee may edit the practiced item price during the sale.
+- Product prices, practiced prices, installment amounts, and payments must be
+  greater than zero; negative values are rejected.
 - Historical sale prices never change when the product catalog changes.
 - An immediate sale uses one payment method in the MVP: cash, Pix, debit, or
   credit card.

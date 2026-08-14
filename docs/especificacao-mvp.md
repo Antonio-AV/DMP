@@ -144,6 +144,8 @@ A aplicação não dependerá de internet nem de servidor externo.
 - O estado da sessão do Streamlit será usado apenas para estado transitório, como o carrinho ativo.
 - O estado persistido do negócio pertencerá ao SQLite.
 - Valores monetários serão armazenados em centavos inteiros.
+- Preços, valores de parcelas e pagamentos informados devem ser maiores que zero;
+  valores negativos não são permitidos.
 - O banco terá migrações versionadas para permitir evolução do esquema.
 - As entidades principais serão `Produto`, `Fornecedor`, `ProdutoFornecedor`, `Venda`, `ItemVenda`, `Cliente`, `Parcela`, `Recebimento`, `CaixaDiario` e `MovimentoEstoque`.
 - Uma venda terá os estados `aberta`, `finalizada` ou `cancelada`.
